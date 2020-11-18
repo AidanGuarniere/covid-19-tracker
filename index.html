@@ -18,11 +18,43 @@
     <header>
       <h1>Covid-19 Tracker</h1>
     </header>
+    
     <main>
       <div id="nav">
-        <a class="waves-effect waves-teal btn-flat" id="information">Information</a>
-        <a class="waves-effect waves-teal btn-flat" id="resources">Resources</a>
-        <a class="waves-effect waves-teal btn-flat" id="testing">Testing</a>
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Information</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <p>Information</p>
+    <li><a href="#!">two</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">three</a></li>
+    <li><a href="#!">four</a></li>
+    <li><a href="#!">five</a></li>
+  </ul>
+  <a class='dropdown-trigger btn' href='#' data-target='dropdown-resources'>Resources</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown-resources' class='dropdown-content'>
+    <p>Resources</p>
+    <li><a href="#!">test</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">test</a></li>
+    <li><a href="#!">test</a></li>
+    <li><a href="#!">test</a></li>
+  </ul>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown-testing' class='dropdown-content'>
+    <p>Get Tested</p>
+    <li><a href="#!">test2</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">test2</a></li>
+    <li><a href="#!">test2</a></li>
+    <li><a href="#!">test2</a></li>
+  </ul>
+  <a class='dropdown-trigger btn' href='#' data-target='dropdown-testing'>Get Tested</a>
       </div>
 
       <section id="map-and-info">
@@ -47,6 +79,7 @@
         
       </section>
     </main>
-    <!-- <script   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="   crossorigin="anonymous"></script> -->
+    <script   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="   crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
