@@ -4,37 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Covid-19 Tracker</title>
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <header>
       <h1>Covid-19 Tracker</h1>
     </header>
     <main>
-      <div class="modal">
-        <button id="information">Information</button>
-        <button id="resources">Resources</button>
-        <button id="testing">Testing</button>
+      <div id="nav">
+        <a class="waves-effect waves-teal btn-flat" id="information">Information</a>
+        <a class="waves-effect waves-teal btn-flat" id="resources">Resources</a>
+        <a class="waves-effect waves-teal btn-flat" id="testing">Testing</a>
       </div>
-      <section class="map">
-          <div>
-        <input type="text" placeholder="Search a City" />
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.5332876881816!2d-124.02127718452374!3d40.925978032433925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d15bde678bcf79%3A0xf3b46cd11306b0c5!2s31%20Whittier%20Ln%2C%20McKinleyville%2C%20CA%2095519!5e0!3m2!1sen!2sus!4v1602051448331!5m2!1sen!2sus"
-          frameborder="0"
-          style="border: 0"
-          allowfullscreen
-        >
-        </iframe>
-    </div>
-        <div class="search-info">
-          <h3 id="city-name">City Name</h3>
-          <h3 id="new-cases">New Cases Today</h3>
-          <h3 id="new-cases-this-week">New Cases This Week</h3>
-          <h3 id="current-cases">Current Number of Cases</h3>
-          <h3 id="total-cases">Total Cases</h3>
-          <h3 id="deaths">Deaths</h3>
+
+      <section id="map-and-info">
+        <div>
+          <input type="text" placeholder="Search a City" id="city-search" />
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.5332876881816!2d-124.0212771852374!3d40.925978032433925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d15bde678bcf79%3A0xf3b46cd11306b0c5!2s31%20Whittier%20Ln%2C%20McKinleyville%2C%20CA%2095519!5e0!3m2!1sen!2sus!4v1602051448331!5m2!1sen!2sus"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen
+          >
+          </iframe>
+          <div id="search-info">
+            <p id="city-name">City Name</p>
+            <p id="new-cases">New Cases Today</p>
+            <p id="new-cases-this-week">New Cases This Week</p>
+            <p id="current-cases">Current Number of Cases</p>
+            <p id="total-cases">Total Cases</p>
+            <p id="deaths">Deaths</p>
+          </div>
         </div>
+        
       </section>
     </main>
+    <!-- <script   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="   crossorigin="anonymous"></script> -->
   </body>
 </html>
