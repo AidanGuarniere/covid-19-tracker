@@ -82,21 +82,22 @@ function displayCovidStarter(data){
 
 }
 
-
+// submit country search button 
 document
   .querySelector("#country-button")
   .addEventListener("click", countrySearch);
 
+// store user country search and send to fetchCovidSearchCountry
 function countrySearch(){
-  let countrySearch = document.querySelector('#countryInput').value;
-  fetchCovidSearchCountry(countrySearch);
+  let userCountrySearch = document.querySelector('#countryInput').value;
+  fetchCovidSearchCountry(userCountrySearch);
 }
 
 
-
-function fetchCovidSearchCountry(countrySearch){
+// fetch country wide covid data based off of userCountrySearch
+function fetchCovidSearchCountry(userCountrySearch){
   fetch('https://disease.sh/v3/covid-19/countries/'
-  +countrySearch+
+  +userCountrySearch+
   '?strict=true')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
@@ -123,7 +124,6 @@ function displayCountryInfo(data) {
   let countryInfoEl = document.querySelector("#countryInfo")
   countryInfoEl.innerHTML = " ";
 
-
   // display country name
   let countryEl = document.createElement("h5");
   countryEl.textContent = data.country
@@ -132,11 +132,11 @@ function displayCountryInfo(data) {
   let countryPopulationEl = document.createElement("h6");
   countryPopulationEl.textContent= "Total population of " + data.country + ": " + data.population
 
-  //display number of 
+  //display number of people tested for covid
   let countryTestsEl = document.createElement("p");
   countryTestsEl.textContent= "Number of People Tested for Covid-19: " + data.tests
 
-  //display number of 
+  //display number of people tested per one million people
   let countryTestsPerOneMilEl = document.createElement("p");
   countryTestsPerOneMilEl.textContent= "Number of People Tested for Covid-19 per One Million People: " + data.testsPerOneMillion
 
@@ -144,49 +144,34 @@ function displayCountryInfo(data) {
   let countryActiveCasesEl = document.createElement("p");
   countryActiveCasesEl.textContent = "Current Number of Active Cases of Covid-19: " + data.active
 
-   //display number of 
+   //display number of per one million people
    let countryActiveCasesPerMilEl = document.createElement("p");
    countryActiveCasesPerMilEl.textContent= "Number of Active Cases of Covid-19 per One Million People: " + data.activePerOneMillion
   
-  //display number of 
+  //display number of critical covid cases
   let countryCriticalCasesEl = document.createElement("p");
   countryCriticalCasesEl.textContent= "Current Number of Critical Cases of Covid-19: " + data.critical
 
-   //display number of 
+   //display number of critical covid cases per one million people
    let countryCriticalCasesPerMilEl = document.createElement("p");
    countryCriticalCasesPerMilEl.textContent= "Number of Critical Cases of Covid-19 per One Million People: " + data.criticalPerOneMillion
 
-  //display number of 
+  //display number of recoveries
   let countryRecoveredEl = document.createElement("p");
   countryRecoveredEl.textContent= "Current Number of Recoveries from Covid-19: " + data.recovered
 
-  //display number of 
+  //display number of recoveries per one million people
   let countryRecoveredPerMilEl = document.createElement("p");
   countryRecoveredPerMilEl.textContent= "Number of Recoveries from Covid-19 per One Million People: " + data.recoveredPerOneMillion
 
-  //display number of 
+  //display number of deaths from covid
   let countryDeathsEl = document.createElement("p");
   countryDeathsEl.textContent= "Current Number of Deaths caused by Covid-19 : " + data.deaths
 
-  //display number of 
+  //display number of deaths per one million people
   let countryDeathsPerMilEl = document.createElement("p");
   countryDeathsPerMilEl.textContent= "Number of Deaths caused by Covid-19 per One Million People: " + data.deathsPerOneMillion
 
-  // //display number of 
-  // let country = document.createElement("p");
-  // .textContent= ": " + data.
-
-  // //display number of 
-  // let country = document.createElement("p");
-  // .textContent= ": " + data.
-
-  // //display number of 
-  // let country = document.createElement("p");
-  // .textContent= ": " + data.
-
-  // //display number of 
-  // let country = document.createElement("p");
-  // .textContent= ": " + data.
   
   // append country search results to DOM
   countryInfoEl.append(countryEl);
@@ -200,17 +185,5 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryRecoveredEl);
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
-  countryInfoEl.append(countryDeathsPerMilEl);
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  // countryInfoEl.append();
-  
-  
+  countryInfoEl.append(countryDeathsPerMilEl);  
 }
