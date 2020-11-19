@@ -186,4 +186,5 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
   countryInfoEl.append(countryDeathsPerMilEl);  
+  
 }
