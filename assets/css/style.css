@@ -8,6 +8,7 @@
 body{
     background-color: rgb(252, 250, 248);
 }
+/* header start */
 
 header{
     display: flex;
@@ -20,7 +21,9 @@ header{
 header h1{
     color: rgb(252, 250, 248);
 }
+/* header end */
 
+/* navigation drop down start */
 main #nav{
     height: 40px;
     display: flex;
@@ -51,3 +54,5 @@ main #nav{
     background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
     color: rgb(252, 250, 248);
 }
+
+/* navigation drop down end */
