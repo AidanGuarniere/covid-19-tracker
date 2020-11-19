@@ -1,7 +1,7 @@
 // global covid data
 let covidGlobalUrl = 'https://disease.sh/v3/covid-19/all' 
-// national covid data 
-let covidNationalUrl = 'https://disease.sh/v3/covid-19/countries/{country}?strict=true'
+// country covid data 
+let covidCountryUrl = 'https://disease.sh/v3/covid-19/countries/{country}?strict=true'
 // statewide covid data 
 let covidStateUrl = 'https://disease.sh/v3/covid-19/states/{state}'
  
@@ -16,27 +16,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // fetch covid-19 starter information
 function fetchCovidStarter() {
-fetch('https://disease.sh/v3/covid-19/all')
-  .then(function (response) {
-    if (!response.ok) { // Request failed, go to catch
-      throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
-    }
-    return response.json()
-  })
-  .then(function (data) {
-    console.log(data);
-    
-    displayCovidStarter(data);
-    
-  })
-  .catch(function (error) {
-    alert(error);
-  });  
+  fetch('https://disease.sh/v3/covid-19/all')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      
+      displayCovidStarter(data);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });  
 }
 
 fetchCovidStarter()
-
-
 
 // display covid starter info
 function displayCovidStarter(data){
@@ -82,4 +80,64 @@ function displayCovidStarter(data){
   recoveriesTodayEL.textContent = "Number of New Recoveries Today: " + data.todayRecovered
 
 
+}
+
+
+document
+  .querySelector("#country-button")
+  .addEventListener("click", countrySearch);
+
+function countrySearch(){
+  let countrySearch = document.querySelector('#countryInput').value;
+  fetchCovidSearchCountry(countrySearch);
+}
+
+
+
+function fetchCovidSearchCountry(countrySearch){
+  fetch('https://disease.sh/v3/covid-19/countries/'
+  +countrySearch+
+  '?strict=true')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      displayCountryInfo(data);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
+function displayCountryInfo(data) {
+  // select country info container
+  let countryInfoEl = document.querySelector("#countryInfo")
+  countryInfoEl.innerHTML = " "
+
+  // display country name
+  let countryEl = document.createElement("p");
+  countryEl.textContent = data.country
+
+  // display number of active cases
+  let countryActiveCasesEl = document.createElement("p");
+  countryActiveCasesEl.textContent = "Total Active Cases: " + data.active
+  
+
+  // append country search results to DOM
+  countryInfoEl.append(countryEl);
+  countryInfoEl.append(countryActiveCasesEl);
+  // countryInfoEl.append();
+  // countryInfoEl.append();
+  // countryInfoEl.append();
+  // countryInfoEl.append();
+  // countryInfoEl.append();
+  // countryInfoEl.append();
+  
+  
+  
 }
