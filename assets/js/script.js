@@ -11,6 +11,12 @@ let covidStateUrl = "https://disease.sh/v3/covid-19/states/{state}";
 //set counter
 let i = 0;
 
+//create state search button div container
+let stateSearchButtonDivEl = document.querySelector("#stateSearchButtonDiv");
+//create state search input div container
+let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
+
+
 // js functions for homepage dropdown
 document.addEventListener("DOMContentLoaded", function () {
   var elems = document.querySelectorAll(".dropdown-trigger");
@@ -128,7 +134,8 @@ function fetchCovidSearchCountry(userCountrySearch) {
         createStateSearch();
         // count stateSearch creation
         i++;
-      }
+      } else {  stateSearchButtonDivEl.innerHTML = " "
+      stateSearchBarDivEl.innerHTML = " "}
     })
     .catch(function (error) {
       alert(error);
@@ -231,11 +238,10 @@ function displayCountryInfo(data) {
 if (i < 1) {
   function createStateSearch() {
     //create state search button div container
-    let stateSearchButtonDivEl = document.querySelector(
-      "#stateSearchButtonDiv"
-    );
+    stateSearchButtonDivEl 
+    
     //create state search input div container
-    let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
+    stateSearchBarDivEl
 
     // create state search input
     let stateSearchBarEl = document.createElement("input");
@@ -250,6 +256,8 @@ if (i < 1) {
     // append state search to search container
     stateSearchButtonDivEl.append(stateSearchButtonEl);
     stateSearchBarDivEl.append(stateSearchBarEl);
+
+    
 
     // add event listener to record user state search input
     document
