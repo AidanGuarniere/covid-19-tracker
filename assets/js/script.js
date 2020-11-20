@@ -132,9 +132,10 @@ function fetchCovidSearchCountry(userCountrySearch) {
       // if country search is USA, add state search option
       if (data.country === "USA") {
         createStateSearch();
-        // count stateSearch creation
+        // add 1 to stateSearch creation count 
         i++;
       }
+      // clear stateSearch and set count to 0
        else {  stateSearchButtonDivEl.innerHTML = " ", 
       stateSearchBarDivEl.innerHTML = " ", i = 0}
     })
@@ -238,7 +239,9 @@ function displayCountryInfo(data) {
 // create state search if country === USA once
 
   function createStateSearch() {
-    if (i < 1) { //create state search button div container
+    // if there is not already a stateSearch
+    if (i < 1) { 
+    //create state search button div container
     stateSearchButtonDivEl 
     
     //create state search input div container
