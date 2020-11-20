@@ -107,13 +107,21 @@ function fetchCovidSearchCountry(userCountrySearch){
     })
     .then(function (data) {
       console.log(data);
+      // display country search
       displayCountryInfo(data);
+      // if country search is USA, add state search option
+      if (data.country === "USA") {
+        createStateSearch()
+        
+      }
       
     })
     .catch(function (error) {
       alert(error);
     });
 }
+
+
 
 function displayCountryInfo(data) {
   // clear starter info display
@@ -129,7 +137,7 @@ function displayCountryInfo(data) {
   countryEl.textContent = data.country
 
   //display country population
-  let countryPopulationEl = document.createElement("h6");
+  let countryPopulationEl = document.createElement("p");
   countryPopulationEl.textContent= "Total population of " + data.country + ": " + data.population
 
   //display number of people tested for covid
@@ -188,3 +196,138 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryDeathsPerMilEl);  
   
 }
+
+
+// create state search if country === USA
+function createStateSearch() {
+  // grab search container
+  let searchContainerEL = document.querySelector("#searchContainer")
+  // create state search input
+  let stateSearchBarEl = document.createElement("input");
+  stateSearchBarEl.setAttribute('id', 'stateInput')
+  stateSearchBarEl.setAttribute('class', 'col 3')
+  // create state search button
+  let stateSearchButtonEl = document.createElement("button");
+  stateSearchButtonEl.setAttribute('id', 'state-button')
+  stateSearchButtonEl.setAttribute('class', 'col 1')
+  
+  
+  console.log(stateSearchButtonEl);
+  // append state search to search container
+  searchContainerEL.append(stateSearchButtonEl)
+  searchContainerEL.append(stateSearchBarEl);
+  
+  // add event listener to record user state search input
+  document.querySelector("#state-button").addEventListener("click", getUserStateSearch);
+
+
+}
+
+// submit state search button 
+
+// get state search
+function getUserStateSearch(){
+  // get user state search input
+  let userStateSearch = document.querySelector('#stateInput').value;
+  // run fetch request with search
+  fetchCovidStateSearch(userStateSearch);
+  }
+
+  // fetch state covid data
+  function fetchCovidStateSearch(userStateSearch){
+    fetch('https://disease.sh/v3/covid-19/states/' + userStateSearch)
+      .then(function (response) {
+        if (!response.ok) { // Request failed, go to catch
+          throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        }
+        return response.json()
+      })
+      .then(function (data) {
+        console.log(data);
+        // display state covid data
+        displayStateSearch(data)
+        
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+    }
+    
+    // display state search response
+    function displayStateSearch(data){
+    
+        // clear starter info display
+        let starterInfoEl = document.querySelector("#starter-info")
+        starterInfoEl.innerHTML = " ";
+    
+        // select country info container and set it blank
+        let countryInfoEl = document.querySelector("#countryInfo")
+        countryInfoEl.innerHTML = " ";
+    
+        // select state info container and set it blank
+        let stateInfoEl = document.querySelector("#stateInfo")
+        stateInfoEl.innerHTML = " ";
+    
+        // display state name
+        let stateEl = document.createElement("h5");
+        stateEl.textContent = data.state
+    
+        //display state population
+        let statePopulationEl = document.createElement("h6");
+        statePopulationEl.textContent= "Total population of " + data.state + ": " + data.population
+    
+        //display number of people tested for covid
+      let stateTestsEl = document.createElement("p");
+      stateTestsEl.textContent= "Number of People Tested for Covid-19: " + data.tests
+    
+      //display number of people tested per one million people
+      let stateTestsPerOneMilEl = document.createElement("p");
+      stateTestsPerOneMilEl.textContent= "Number of People Tested for Covid-19 per One Million People: " + data.testsPerOneMillion
+    
+      // display number of active cases
+      let stateActiveCasesEl = document.createElement("p");
+      stateActiveCasesEl.textContent = "Current Number of Active Cases of Covid-19: " + data.active
+    
+       //display number of per one million people
+       let stateActiveCasesPerMilEl = document.createElement("p");
+       stateActiveCasesPerMilEl.textContent= "Number of Active Cases of Covid-19 per One Million People: " + data.activePerOneMillion
+      
+      //display number of critical covid cases
+      let stateCriticalCasesEl = document.createElement("p");
+      stateCriticalCasesEl.textContent= "Current Number of Critical Cases of Covid-19: " + data.critical
+    
+       //display number of critical covid cases per one million people
+       let stateCriticalCasesPerMilEl = document.createElement("p");
+       stateCriticalCasesPerMilEl.textContent= "Number of Critical Cases of Covid-19 per One Million People: " + data.criticalPerOneMillion
+    
+      //display number of recoveries
+      let stateRecoveredEl = document.createElement("p");
+      stateRecoveredEl.textContent= "Current Number of Recoveries from Covid-19: " + data.recovered
+    
+      //display number of recoveries per one million people
+      let stateRecoveredPerMilEl = document.createElement("p");
+      stateRecoveredPerMilEl.textContent= "Number of Recoveries from Covid-19 per One Million People: " + data.recoveredPerOneMillion
+    
+      //display number of deaths from covid
+      let stateDeathsEl = document.createElement("p");
+      stateDeathsEl.textContent= "Current Number of Deaths caused by Covid-19 : " + data.deaths
+    
+      //display number of deaths per one million people
+      let stateDeathsPerMilEl = document.createElement("p");
+      stateDeathsPerMilEl.textContent= "Number of Deaths caused by Covid-19 per One Million People: " + data.deathsPerOneMillion
+    
+    
+        // append content to page
+        stateInfoEl.append(stateEl);
+        stateInfoEl.append(statePopulationEl);
+        stateInfoEl.append(stateTestsEl);
+        stateInfoEl.append(stateTestsPerOneMilEl); 
+        stateInfoEl.append(stateActiveCasesEl);
+        stateInfoEl.append(stateActiveCasesPerMilEl);
+        stateInfoEl.append(stateCriticalCasesEl);
+        stateInfoEl.append(stateCriticalCasesPerMilEl);
+        stateInfoEl.append(stateRecoveredEl);
+        stateInfoEl.append(stateRecoveredPerMilEl);
+        stateInfoEl.append(stateDeathsEl);
+        stateInfoEl.append(stateDeathsPerMilEl); 
+    }
