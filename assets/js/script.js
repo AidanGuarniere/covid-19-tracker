@@ -90,11 +90,10 @@ document
 
 // store user country search and send to fetchCovidSearchCountry
 function countrySearch(){
-  i++
   let userCountrySearch = document.querySelector('#countryInput').value;
-  if (i < 2){
+  if (i < 1){
   fetchCovidSearchCountry(userCountrySearch);
-  } else { return; }
+  } else { return;}
 }
 
 
@@ -207,6 +206,7 @@ function displayCountryInfo(data) {
 
 // create state search if country === USA
 function createStateSearch() {
+  i++
   //create state search button div container
   let stateSearchButtonDivEl = document.querySelector('#stateSearchButtonDiv');
   //create state search input div container
