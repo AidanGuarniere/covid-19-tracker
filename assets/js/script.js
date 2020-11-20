@@ -134,8 +134,9 @@ function fetchCovidSearchCountry(userCountrySearch) {
         createStateSearch();
         // count stateSearch creation
         i++;
-      } else {  stateSearchButtonDivEl.innerHTML = " "
-      stateSearchBarDivEl.innerHTML = " "}
+      }
+       else {  stateSearchButtonDivEl.innerHTML = " ", 
+      stateSearchBarDivEl.innerHTML = " ", i = 0}
     })
     .catch(function (error) {
       alert(error);
@@ -235,9 +236,9 @@ function displayCountryInfo(data) {
 }
 
 // create state search if country === USA once
-if (i < 1) {
+
   function createStateSearch() {
-    //create state search button div container
+    if (i < 1) { //create state search button div container
     stateSearchButtonDivEl 
     
     //create state search input div container
