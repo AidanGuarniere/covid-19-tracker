@@ -83,19 +83,24 @@ function displayCovidStarter(data){
 }
 
 // submit country search button 
+let i = 0
 document
   .querySelector("#country-button")
   .addEventListener("click", countrySearch);
 
 // store user country search and send to fetchCovidSearchCountry
 function countrySearch(){
+  i++
   let userCountrySearch = document.querySelector('#countryInput').value;
+  if (i < 2){
   fetchCovidSearchCountry(userCountrySearch);
+  } else { return; }
 }
 
 
 // fetch country wide covid data based off of userCountrySearch
 function fetchCovidSearchCountry(userCountrySearch){
+
   fetch('https://disease.sh/v3/covid-19/countries/'
   +userCountrySearch+
   '?strict=true')
@@ -107,13 +112,15 @@ function fetchCovidSearchCountry(userCountrySearch){
     })
     .then(function (data) {
       console.log(data);
+    
       // display country search
       displayCountryInfo(data);
+
       // if country search is USA, add state search option
-      if (data.country === "USA") {
-        createStateSearch()
-        
-      }
+        if (data.country === "USA") {
+          createStateSearch();
+        }
+      
       
     })
     .catch(function (error) {
