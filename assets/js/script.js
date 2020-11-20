@@ -1,10 +1,15 @@
 // global covid data
 let covidGlobalUrl = 'https://disease.sh/v3/covid-19/all' 
+
 // country covid data 
 let covidCountryUrl = 'https://disease.sh/v3/covid-19/countries/{country}?strict=true'
+
 // statewide covid data 
 let covidStateUrl = 'https://disease.sh/v3/covid-19/states/{state}'
  
+//set counter
+let i = 0
+
 
 
  
@@ -83,8 +88,9 @@ function displayCovidStarter(data){
 
 }
 
-// submit country search button 
-let i = 0
+ 
+
+// submit country search button
 document
   .querySelector("#country-button")
   .addEventListener("click", countrySearch);
@@ -120,10 +126,10 @@ function fetchCovidSearchCountry(userCountrySearch){
       // if country search is USA, add state search option
         if (data.country === "USA") {
           createStateSearch();
+          // count stateSearch creation
           i++
 
-        } else {i = i - 1}
-      
+        }
       
     })
     .catch(function (error) {
@@ -212,7 +218,7 @@ function displayCountryInfo(data) {
 }
 
 
-// create state search if country === USA
+// create state search if country === USA once
 if (i < 1){
 function createStateSearch() {//create state search button div container
   let stateSearchButtonDivEl = document.querySelector('#stateSearchButtonDiv');
