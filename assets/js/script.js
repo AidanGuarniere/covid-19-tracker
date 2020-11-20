@@ -200,22 +200,28 @@ function displayCountryInfo(data) {
 
 // create state search if country === USA
 function createStateSearch() {
-  // grab search container
-  let searchContainerEL = document.querySelector("#searchContainer")
+  //create state search button div container
+  let stateSearchButtonDivEl = document.querySelector('#stateSearchButtonDiv');
+  //create state search input div container
+  let stateSearchBarDivEl = document.querySelector('#stateSearchBarDiv');
+
   // create state search input
   let stateSearchBarEl = document.createElement("input");
   stateSearchBarEl.setAttribute('id', 'stateInput')
-  stateSearchBarEl.setAttribute('class', 'col 3')
+  stateSearchBarEl.setAttribute('placeholder', "Search a US State");
   // create state search button
-  let stateSearchButtonEl = document.createElement("button");
-  stateSearchButtonEl.setAttribute('id', 'state-button')
-  stateSearchButtonEl.setAttribute('class', 'col 1')
+  let stateSearchButtonEl = document.createElement("a");
+  stateSearchButtonEl.setAttribute('id', 'state-button');
+  stateSearchButtonEl.setAttribute('class', 'waves-effect waves-light btn');
+  stateSearchButtonEl.textContent = 'Search'
+  
+ 
   
   
   console.log(stateSearchButtonEl);
   // append state search to search container
-  searchContainerEL.append(stateSearchButtonEl)
-  searchContainerEL.append(stateSearchBarEl);
+  stateSearchButtonDivEl.append(stateSearchButtonEl);
+  stateSearchBarDivEl.append(stateSearchBarEl);
   
   // add event listener to record user state search input
   document.querySelector("#state-button").addEventListener("click", getUserStateSearch);
