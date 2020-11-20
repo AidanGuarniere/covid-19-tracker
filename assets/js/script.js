@@ -41,11 +41,11 @@ function displayCovidStarter(data){
 
   // display affected countries starter data
   let countriesEl = document.querySelector("#affected-countries")
-  countriesEl.textContent = "Affected Countries: " + data.affectedCountries
+  countriesEl.textContent = "Number of Affected Countries: " + data.affectedCountries
 
   // display total active cases starter data
   let ActiveEl = document.querySelector("#total-cases")
-  ActiveEl.textContent =  "Active Cases: " + data.active 
+  ActiveEl.textContent =  "Total Active Cases:: " + data.active 
 
   // display total active cases per one million people starter data
   let ActivePerOneMilEl = document.querySelector("#total-per-one-mil")
@@ -53,23 +53,23 @@ function displayCovidStarter(data){
 
   // display total deaths starter data
   let DeathsEl = document.querySelector("#total-deaths")
-  DeathsEl.textContent = "Total Deaths: " + data.deaths
+  DeathsEl.textContent = "Total Deaths " + data.deaths
 
   // display total deaths per one million people starter data
-  // let DeathsPerOneMilEl= document.querySelector("#total-deaths-per-one-mil")
-  // DeathsPerOneMilEl.textContent = "Total Deaths from Covid-19 per One Million People: " + data.deathsPerOneMillion
+  let DeathsPerOneMilEl= document.querySelector("#total-deaths-per-one-mil")
+  DeathsPerOneMilEl.textContent = "Total Deaths from Covid-19 per One Million People: " + data.deathsPerOneMillion
 
   // display total recovered starter data
   let RecoveredEl = document.querySelector("#total-recovered")
-  RecoveredEl.textContent = "Number of People Recovered: " + data.recovered
+  RecoveredEl.textContent = "Number of People Recovered from Covid 19: " + data.recovered
 
   // display total recovered per one million starter data
-  // let RecoveredPerOneMillionEl = document.querySelector("#total-recovered-per-one-mil")
-  // RecoveredPerOneMillionEl.textContent = "Number of People Recovered:  " + data.recoveredPerOneMillion
+  let RecoveredPerOneMillionEl = document.querySelector("#total-recovered-per-one-mil")
+  RecoveredPerOneMillionEl.textContent = "Number of People Recovered from Covid 19:  " + data.recoveredPerOneMillion
 
   // display new cases today starter data
   let CasesTodayEl = document.querySelector("#total-cases-today")
-  CasesTodayEl.textContent = "New Cases Today: " + data.todayCases
+  CasesTodayEl.textContent = "Number of New Cases Today: " + data.todayCases
 
   // display new deaths today starter data
   let deathsTodayEL = document.querySelector("#total-deaths-today")
@@ -120,12 +120,9 @@ function displayCountryInfo(data) {
   let starterInfoEl = document.querySelector("#starter-info")
   starterInfoEl.innerHTML = " ";
 
-  // select country info country container and set it blank
+  // select country info container and set it blank
   let countryInfoEl = document.querySelector("#countryInfo")
   countryInfoEl.innerHTML = " ";
-  // select country info main container and set in blank
-  let countryInfoMainEl = document.querySelector("#countryInfoMain")
-  countryInfoMainEl.innerHTML = " ";
 
   // display country name
   let countryEl = document.createElement("h5");
@@ -178,16 +175,16 @@ function displayCountryInfo(data) {
   
   // append country search results to DOM
   countryInfoEl.append(countryEl);
-  countryInfoMainEl.append(countryPopulationEl);
-  countryInfoMainEl.append(countryTestsEl);
-  countryInfoMainEl.append(countryTestsPerOneMilEl);
-  countryInfoMainEl.append(countryActiveCasesEl);
-  countryInfoMainEl.append(countryActiveCasesPerMilEl);
-  countryInfoMainEl.append(countryCriticalCasesEl);
-  countryInfoMainEl.append(countryCriticalCasesPerMilEl);
-  countryInfoMainEl.append(countryRecoveredEl);
-  countryInfoMainEl.append(countryRecoveredPerMilEl);
-  countryInfoMainEl.append(countryDeathsEl);
-  countryInfoMainEl.append(countryDeathsPerMilEl);  
+  countryInfoEl.append(countryPopulationEl);
+  countryInfoEl.append(countryTestsEl);
+  countryInfoEl.append(countryTestsPerOneMilEl);
+  countryInfoEl.append(countryActiveCasesEl);
+  countryInfoEl.append(countryActiveCasesPerMilEl);
+  countryInfoEl.append(countryCriticalCasesEl);
+  countryInfoEl.append(countryCriticalCasesPerMilEl);
+  countryInfoEl.append(countryRecoveredEl);
+  countryInfoEl.append(countryRecoveredPerMilEl);
+  countryInfoEl.append(countryDeathsEl);
+  countryInfoEl.append(countryDeathsPerMilEl);  
   
 }
