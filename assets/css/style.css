@@ -1,0 +1,88 @@
+
+*   {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(233, 225, 218);
+}
+/* header start */
+
+header{
+    display: flex;
+    background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
+    height: 70px;
+    align-items: center;
+    padding-left: 20px;
+}
+
+header h1{
+    color: rgb(252, 250, 248);
+}
+/* header end */
+
+/* navigation drop down start */
+main #nav{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 10px 0 20px 0;
+    padding: 0 20px 0 20px;
+    text-transform: uppercase;
+}
+
+.dropdown-content p{
+    font-size: medium; 
+    background-color: rgb(38, 167, 154);
+    color: rgb(252, 250, 248);
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+#nav a{
+    width:100%;
+    text-align: center;
+    border-bottom: 2px solid rgb(151, 151, 151);
+}
+
+#nav a:hover{
+    background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
+    color: rgb(252, 250, 248);
+}
+
+/* navigation drop down end */
+
+/* Starter info start */
+.map{
+    height: 500px; 
+    background-color: red;
+}
+
+
+
+ h5{
+    display: block;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 0 20px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+.paragraph-container{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 0 0 0 20px;
+    flex-direction: column;
+}
+
+.paragraph-container p{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+/* Start ingo end */
