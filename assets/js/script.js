@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // fetch covid-19 starter information
 function fetchCovidStarter() {
+ 
   fetch('https://disease.sh/v3/covid-19/all')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
@@ -91,14 +92,15 @@ document
 // store user country search and send to fetchCovidSearchCountry
 function countrySearch(){
   let userCountrySearch = document.querySelector('#countryInput').value;
-  if (i < 1){
+  
   fetchCovidSearchCountry(userCountrySearch);
-  } else { return;}
+  
 }
 
 
 // fetch country wide covid data based off of userCountrySearch
 function fetchCovidSearchCountry(userCountrySearch){
+
 
   fetch('https://disease.sh/v3/covid-19/countries/'
   +userCountrySearch+
@@ -118,7 +120,9 @@ function fetchCovidSearchCountry(userCountrySearch){
       // if country search is USA, add state search option
         if (data.country === "USA") {
           createStateSearch();
-        }
+          i++
+
+        } else {i = i - 1}
       
       
     })
@@ -138,6 +142,10 @@ function displayCountryInfo(data) {
   let countryInfoEl = document.querySelector("#countryInfo")
   countryInfoEl.innerHTML = " ";
 
+  // select state info container and set it blank
+  let stateInfoEl = document.querySelector("#stateInfo")
+  stateInfoEl.innerHTML = " ";
+  
   // display country name
   let countryEl = document.createElement("h5");
   countryEl.textContent = data.country
@@ -205,9 +213,8 @@ function displayCountryInfo(data) {
 
 
 // create state search if country === USA
-function createStateSearch() {
-  i++
-  //create state search button div container
+if (i < 1){
+function createStateSearch() {//create state search button div container
   let stateSearchButtonDivEl = document.querySelector('#stateSearchButtonDiv');
   //create state search input div container
   let stateSearchBarDivEl = document.querySelector('#stateSearchBarDiv');
@@ -220,11 +227,7 @@ function createStateSearch() {
   let stateSearchButtonEl = document.createElement("a");
   stateSearchButtonEl.setAttribute('id', 'state-button');
   stateSearchButtonEl.setAttribute('class', 'waves-effect waves-light btn');
-  stateSearchButtonEl.textContent = 'Search'
-  
- 
-  
-  
+  stateSearchButtonEl.textContent = 'Search' 
   console.log(stateSearchButtonEl);
   // append state search to search container
   stateSearchButtonDivEl.append(stateSearchButtonEl);
@@ -233,8 +236,10 @@ function createStateSearch() {
   // add event listener to record user state search input
   document.querySelector("#state-button").addEventListener("click", getUserStateSearch);
 
+}}
+  
 
-}
+
 
 // submit state search button 
 
@@ -266,8 +271,8 @@ function getUserStateSearch(){
       });
     }
     
-    // display state search response
-    function displayStateSearch(data){
+  // display state search response
+  function displayStateSearch(data){
     
       // clear starter info display
       let starterInfoEl = document.querySelector("#starter-info")
