@@ -391,4 +391,5 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateRecoveredPerMilEl);
   stateInfoEl.append(stateDeathsEl);
   stateInfoEl.append(stateDeathsPerMilEl);
+  
 }
