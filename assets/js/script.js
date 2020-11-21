@@ -107,6 +107,7 @@ function countrySearch() {
   let userCountrySearch = document.querySelector("#countryInput").value;
 
   fetchCovidSearchCountry(userCountrySearch);
+  fetchCountryCoordinate(userCountrySearch)
 }
 
 // fetch country wide covid data based off of userCountrySearch
@@ -278,6 +279,7 @@ function getUserStateSearch() {
   let userStateSearch = document.querySelector("#stateInput").value;
   // run fetch request with search
   fetchCovidStateSearch(userStateSearch);
+  fetchStateCoordinate(userStateSearch)
 }
 
 // fetch state covid data
@@ -393,3 +395,44 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateDeathsPerMilEl);
   
 }
+
+// fetch country coordinate
+function fetchCountryCoordinate(userCountrySearch) {
+  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
+  +userCountrySearch+
+  '&key=1f298402f9764572995564fe8aad4f5f')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // uthrow will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
+// fetch location coordinate
+function fetchStateCoordinate(userStateSearch) {
+  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
+  +userStateSearch+
+  '&key=1f298402f9764572995564fe8aad4f5f')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
