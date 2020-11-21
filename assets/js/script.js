@@ -319,7 +319,7 @@ function displayStateSearch(data) {
   stateEl.textContent = data.state;
 
   //display state population
-  let statePopulationEl = document.createElement("h6");
+  let statePopulationEl = document.createElement("p");
   statePopulationEl.textContent =
     "Total population of " + data.state + ": " + data.population;
 
