@@ -407,8 +407,8 @@ function fetchCountryCoordinate(userCountrySearch) {
       }
       return response.json()
     })
-    .then(function (data) {
-      console.log(data);
+    .then(function (countryCoordinates) {
+      console.log(countryCoordinates);
       
     })
     .catch(function (error) {
@@ -427,8 +427,8 @@ function fetchStateCoordinate(userStateSearch) {
       }
       return response.json()
     })
-    .then(function (data) {
-      console.log(data);
+    .then(function (stateCoordinates) {
+      console.log(stateCoordinates);
       
     })
     .catch(function (error) {
