@@ -13,8 +13,12 @@ let i = 0;
 
 //create state search button div container
 let stateSearchButtonDivEl = document.querySelector("#stateSearchButtonDiv");
+
 //create state search input div container
 let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
+
+// grab popup container
+let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
 
 
 // js functions for homepage dropdown
@@ -157,6 +161,9 @@ function displayCountryInfo(data) {
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
   stateInfoEl.innerHTML = " ";
+
+  // select usa pop up container and set it blank
+  usaPopupContainerEl.innerHTML= " ";
 
   // display country name
   let countryEl = document.createElement("h5");
@@ -419,8 +426,7 @@ function fetchUsaPopup(){
 
 // display usa covid info for poppup
 function displayUsaPopup(data){
-  // grab popup container
-  let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
+
   // display country name
   let usaEl = document.createElement("h5");
   usaEl.textContent = data.country;
