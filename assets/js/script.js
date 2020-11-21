@@ -20,6 +20,7 @@ let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
 // grab popup container
 let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
 
+let popUpCount = 0 
 
 // js functions for homepage dropdown
 document.addEventListener("DOMContentLoaded", function () {
@@ -133,6 +134,7 @@ function fetchCovidSearchCountry(userCountrySearch) {
 
       // display country search
       displayCountryInfo(data);
+      popUpCount = 0
 
       // if country search is USA, add state search option
       if (data.country === "USA") {
@@ -404,6 +406,8 @@ function displayStateSearch(data) {
   
 }
 
+
+
 // get usa covid info for popup
 function fetchUsaPopup(){
   fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
@@ -415,6 +419,7 @@ function fetchUsaPopup(){
     })
     .then(function (data) {
       console.log(data);
+      popUpCount++
       displayUsaPopup(data)
       
       
@@ -426,6 +431,7 @@ function fetchUsaPopup(){
 
 // display usa covid info for poppup
 function displayUsaPopup(data){
+  if (popUpCount < 2){
 
   // display country name
   let usaEl = document.createElement("h5");
@@ -458,6 +464,7 @@ function displayUsaPopup(data){
   usaPopupContainerEl.append(usaTestsEl);
   usaPopupContainerEl.append(usaActiveCasesEl);
   usaPopupContainerEl.append(usaDeathsEl);
+  }
 }
 
 // fetch country coordinate
