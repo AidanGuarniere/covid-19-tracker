@@ -54,7 +54,7 @@ function displayCovidStarter(data) {
 
   // display total active cases starter data
   let ActiveEl = document.querySelector("#total-cases");
-  ActiveEl.textContent = "Total Active Cases:: " + data.active;
+  ActiveEl.textContent = "Total Active Cases: " + data.active;
 
   // display total active cases per one million people starter data
   let ActivePerOneMilEl = document.querySelector("#total-per-one-mil");
@@ -393,7 +393,65 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateRecoveredPerMilEl);
   stateInfoEl.append(stateDeathsEl);
   stateInfoEl.append(stateDeathsPerMilEl);
+  fetchUsaPopup()
   
+}
+
+// get usa covid info for popup
+function fetchUsaPopup(){
+  fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      displayUsaPopup(data)
+      
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
+// display usa covid info for poppup
+function displayUsaPopup(data){
+  // grab popup container
+  let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
+  // display country name
+  let usaEl = document.createElement("h5");
+  usaEl.textContent = data.country;
+
+  //display usa population
+  let usaPopulationEl = document.createElement("p");
+  usaPopulationEl.textContent =
+    "Total population of " + data.country + ": " + data.population;
+
+  //display number of people tested for covid
+  let usaTestsEl = document.createElement("p");
+  usaTestsEl.textContent =
+    "Number of People Tested for Covid-19: " + data.tests;
+
+  // display number of active cases
+  let usaActiveCasesEl = document.createElement("p");
+  usaActiveCasesEl.textContent =
+  "Current Number of Active Cases of Covid-19: " + data.active;
+  
+
+  //display number of deaths from covid
+  let usaDeathsEl = document.createElement("p");
+  usaDeathsEl.textContent =
+    "Current Number of Deaths caused by Covid-19 : " + data.deaths;
+      
+
+  usaPopupContainerEl.append(usaEl);
+  usaPopupContainerEl.append(usaPopulationEl);
+  usaPopupContainerEl.append(usaTestsEl);
+  usaPopupContainerEl.append(usaActiveCasesEl);
+  usaPopupContainerEl.append(usaDeathsEl);
 }
 
 // fetch country coordinate
