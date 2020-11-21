@@ -15,11 +15,12 @@ header{
     background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
     height: 70px;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 header h1{
     color: rgb(252, 250, 248);
+    padding-bottom:20px;
 }
 /* header end */
 
@@ -87,5 +88,31 @@ main #nav{
 }
 /* Start ingo end */
 
-
-/* state button */
+/* USA Search + State Search Styles Start*/
+.usa-after-state-style{
+    width: 100%;
+    position: absolute;
+    padding-left: 0;
+    padding-top: 2000px;
+}
+.usa-after-state-style h5{
+    padding-top: 600px;
+    background: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    text-decoration: underline;
+}
+.usa-after-state-paragraph-container-style{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    padding-left: 0;
+    
+    
+}
+.usa-after-state-paragraph-container-style p{
+    width: 100px;
+    padding-left: 0;
+    margin-left: 0;
+}
+/* USA Search + State Search Styles End*/
