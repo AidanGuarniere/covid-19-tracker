@@ -152,6 +152,9 @@ function displayCountryInfo(data) {
   // select country info container and set it blank
   let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
+  countryInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  
+  
 
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
@@ -234,6 +237,7 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
   countryInfoEl.append(countryDeathsPerMilEl);
+  stateInfoEl.removeAttribute('class', 'paragraph-container col l4 s12');
 }
 
 // create state search if country === USA once
@@ -391,5 +395,7 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateRecoveredPerMilEl);
   stateInfoEl.append(stateDeathsEl);
   stateInfoEl.append(stateDeathsPerMilEl);
+  stateInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  countryInfoEl.removeAttribute('class', 'paragraph-container col l4 s12')
   
 }
