@@ -92,8 +92,8 @@ main #nav{
 
 
 #countryInfo, #stateInfo{
-    margin-left: 10px;
-    position: absolute;
+    position: relative;
     max-width: 300px;
-    margin-left: 695px;
+    left: 23px;
+    /* margin-left: 695px; */
 }
