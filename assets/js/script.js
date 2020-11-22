@@ -13,8 +13,22 @@ let i = 0;
 
 //create state search button div container
 let stateSearchButtonDivEl = document.querySelector("#stateSearchButtonDiv");
+
 //create state search input div container
 let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
+
+// grab popup container
+let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
+
+// popup counter
+let popUpCount = 0 
+
+// select country info container and set it blank
+let countryInfoEl = document.querySelector("#countryInfo");
+
+
+// select state info container and set it blank
+let stateInfoEl = document.querySelector("#stateInfo");
 
 
 // js functions for homepage dropdown
@@ -54,7 +68,7 @@ function displayCovidStarter(data) {
 
   // display total active cases starter data
   let ActiveEl = document.querySelector("#total-cases");
-  ActiveEl.textContent = "Total Active Cases:: " + data.active;
+  ActiveEl.textContent = "Total Active Cases: " + data.active;
 
   // display total active cases per one million people starter data
   let ActivePerOneMilEl = document.querySelector("#total-per-one-mil");
@@ -107,6 +121,7 @@ function countrySearch() {
   let userCountrySearch = document.querySelector("#countryInput").value;
 
   fetchCovidSearchCountry(userCountrySearch);
+  fetchCountryCoordinate(userCountrySearch)
 }
 
 // fetch country wide covid data based off of userCountrySearch
@@ -128,6 +143,7 @@ function fetchCovidSearchCountry(userCountrySearch) {
 
       // display country search
       displayCountryInfo(data);
+      popUpCount = 0
 
       // if country search is USA, add state search option
       if (data.country === "USA") {
@@ -159,6 +175,9 @@ function displayCountryInfo(data) {
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
   stateInfoEl.innerHTML = " ";
+
+  // select usa pop up container and set it blank
+  usaPopupContainerEl.innerHTML= " ";
 
   // display country name
   let countryEl = document.createElement("h5");
@@ -283,6 +302,7 @@ function getUserStateSearch() {
   let userStateSearch = document.querySelector("#stateInput").value;
   // run fetch request with search
   fetchCovidStateSearch(userStateSearch);
+  fetchStateCoordinate(userStateSearch)
 }
 
 // fetch state covid data
@@ -312,11 +332,9 @@ function displayStateSearch(data) {
   starterInfoEl.innerHTML = " ";
 
   // select country info container and set it blank
-  let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
 
   // select state info container and set it blank
-  let stateInfoEl = document.querySelector("#stateInfo");
   stateInfoEl.innerHTML = " ";
 
   // display state name
@@ -396,7 +414,112 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateRecoveredPerMilEl);
   stateInfoEl.append(stateDeathsEl);
   stateInfoEl.append(stateDeathsPerMilEl);
-  stateInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
-  countryInfoEl.removeAttribute('class', 'paragraph-container col l4 s12')
+  fetchUsaPopup()
   
 }
+
+
+
+// get usa covid info for popup
+function fetchUsaPopup(){
+  fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      popUpCount++
+      displayUsaPopup(data)
+      
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
+// display usa covid info for poppup
+function displayUsaPopup(data){
+  if (popUpCount < 2){
+
+  // display country name
+  let usaEl = document.createElement("h5");
+  usaEl.textContent = data.country;
+
+  //display usa population
+  let usaPopulationEl = document.createElement("p");
+  usaPopulationEl.textContent =
+    "Total population of " + data.country + ": " + data.population;
+
+  //display number of people tested for covid
+  let usaTestsEl = document.createElement("p");
+  usaTestsEl.textContent =
+    "Number of People Tested for Covid-19: " + data.tests;
+
+  // display number of active cases
+  let usaActiveCasesEl = document.createElement("p");
+  usaActiveCasesEl.textContent =
+  "Current Number of Active Cases of Covid-19: " + data.active;
+
+  stateInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  countryInfoEl.removeAttribute('class', 'paragraph-container col l4 s12')
+
+  
+
+  //display number of deaths from covid
+  let usaDeathsEl = document.createElement("p");
+  usaDeathsEl.textContent =
+    "Current Number of Deaths caused by Covid-19 : " + data.deaths;
+      
+
+  usaPopupContainerEl.append(usaEl);
+  usaPopupContainerEl.append(usaPopulationEl);
+  usaPopupContainerEl.append(usaTestsEl);
+  usaPopupContainerEl.append(usaActiveCasesEl);
+  usaPopupContainerEl.append(usaDeathsEl);
+  }
+}
+
+// fetch country coordinate
+function fetchCountryCoordinate(userCountrySearch) {
+  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
+  +userCountrySearch+
+  '&key=1f298402f9764572995564fe8aad4f5f')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // uthrow will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (countryCoordinates) {
+      console.log(countryCoordinates);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
+// fetch location coordinate
+function fetchStateCoordinate(userStateSearch) {
+  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
+  +userStateSearch+
+  '&key=1f298402f9764572995564fe8aad4f5f')
+    .then(function (response) {
+      if (!response.ok) { // Request failed, go to catch
+        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+      }
+      return response.json()
+    })
+    .then(function (stateCoordinates) {
+      console.log(stateCoordinates);
+      
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}
+
