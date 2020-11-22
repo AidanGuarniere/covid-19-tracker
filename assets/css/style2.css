@@ -1,11 +1,17 @@
-header {
-    background-color: beige;
+body{
+    background-color: rgb(233, 225, 218);
 }
-h1 {
-    font-style: red;
-    font-size: larger;
+/* header start */
+
+header{
+    display: flex;
+    background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
+    height: 70px;
+    align-items: center;
+    padding-left: 20px;
 }
 
-header p {
-    
+header h1{
+    color: rgb(252, 250, 248);
 }
+/* header end */
