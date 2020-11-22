@@ -225,6 +225,7 @@ function displayCountryInfo(data) {
     data.deathsPerOneMillion;
 
   // append country search results to DOM
+  
   countryInfoEl.append(countryEl);
   countryInfoEl.append(countryPopulationEl);
   countryInfoEl.append(countryTestsEl);
