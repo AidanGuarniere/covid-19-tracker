@@ -20,7 +20,16 @@ let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
 // grab popup container
 let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
 
+// popup counter
 let popUpCount = 0 
+
+// select country info container and set it blank
+let countryInfoEl = document.querySelector("#countryInfo");
+
+
+// select state info container and set it blank
+let stateInfoEl = document.querySelector("#stateInfo");
+
 
 // js functions for homepage dropdown
 document.addEventListener("DOMContentLoaded", function () {
@@ -159,6 +168,9 @@ function displayCountryInfo(data) {
   // select country info container and set it blank
   let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
+  countryInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  
+  
 
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
@@ -244,6 +256,7 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
   countryInfoEl.append(countryDeathsPerMilEl);
+  stateInfoEl.removeAttribute('class', 'paragraph-container col l4 s12');
 }
 
 // create state search if country === USA once
@@ -318,11 +331,9 @@ function displayStateSearch(data) {
   starterInfoEl.innerHTML = " ";
 
   // select country info container and set it blank
-  let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
 
   // select state info container and set it blank
-  let stateInfoEl = document.querySelector("#stateInfo");
   stateInfoEl.innerHTML = " ";
 
   // display state name
@@ -451,6 +462,10 @@ function displayUsaPopup(data){
   let usaActiveCasesEl = document.createElement("p");
   usaActiveCasesEl.textContent =
   "Current Number of Active Cases of Covid-19: " + data.active;
+
+  stateInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  countryInfoEl.removeAttribute('class', 'paragraph-container col l4 s12')
+
   
 
   //display number of deaths from covid
