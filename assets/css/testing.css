@@ -1,0 +1,26 @@
+/* header start */
+
+header{
+    display: flex;
+    background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
+    height: 70px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+header h1{
+    color: rgb(252, 250, 248);
+    padding-bottom:20px;
+}
+/* header end */
+
+/* back to home page button */
+.back-to-home-page{
+    margin: 10px 0 0 10px;
+}
+p{
+    color: gray;
+}
+span{
+    color:black;
+}
