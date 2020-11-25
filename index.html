@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Covid-19 Tracker</title>
 
+    <!--mapbox js and css-->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <!--leaflet css-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
 
     <!-- Compiled and minified CSS -->
     <link
@@ -14,6 +21,8 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!--custom css-->
     <link rel="stylesheet" href="./assets/css/style.css" />
 
   </head>
@@ -73,7 +82,7 @@
           </div>
           <!--Under search bar-->
           <div class='row'>
-            <div class='map col l8 s12'></div>
+            <div id = "mapid" class=' col l8 s12'></div>
             <div id = "starter-info" class=" col l4 s12">
               <div>
               <h5 style='margin-left: 20px;'>Global Covid-19 Data</h5>
@@ -94,17 +103,36 @@
               </div>
             </div>
             <div>
-          <div id="countryInfo" class=""></div>
           
+          <div id="countryInfo" class=""></div>
           <div id="stateInfo" class=""></div>
           <div id="usaPopupContainer" class=""></div>
 
+        </div>
+        
         </div>
           </div>
         </div>
       </section>
     </main>
+    <!-- The Modal -->
+<div id="myModal" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id='modal-text'>Some text in the Modal..</p>
+  </div>
+
+</div>
+    <script src='./assets/js/modal.js'></script>
+    <!--leaflet script-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
     <script   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="   crossorigin="anonymous"></script>
+    <script src="./assets/js/us-states.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

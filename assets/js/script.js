@@ -27,6 +27,7 @@ let popUpCount = 0
 let countryInfoEl = document.querySelector("#countryInfo");
 
 
+
 // select state info container and set it blank
 let stateInfoEl = document.querySelector("#stateInfo");
 
@@ -43,7 +44,7 @@ function fetchCovidStarter() {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -53,7 +54,17 @@ function fetchCovidStarter() {
       displayCovidStarter(data);
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (content not found)';
+        }else{
+          modalText.textContent=error;
+        }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -134,7 +145,7 @@ function fetchCovidSearchCountry(userCountrySearch) {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -156,7 +167,19 @@ function fetchCovidSearchCountry(userCountrySearch) {
       stateSearchBarDivEl.innerHTML = " ", i = 0}
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Country not found)';
+        }else if(error=='Error: 400'){
+        modalText.textContent='Please enter in a country.';
+        }else{
+          modalText.textContent=error;
+          }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -311,7 +334,7 @@ function fetchCovidStateSearch(userStateSearch) {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -321,7 +344,19 @@ function fetchCovidStateSearch(userStateSearch) {
       displayStateSearch(data);
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (State not found)';
+        }else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a state.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -425,7 +460,7 @@ function fetchUsaPopup(){
   fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -437,7 +472,19 @@ function fetchUsaPopup(){
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Country not found) 4';
+        }else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a country.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -490,7 +537,7 @@ function fetchCountryCoordinate(userCountrySearch) {
   '&key=1f298402f9764572995564fe8aad4f5f')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // uthrow will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // uthrow will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -499,7 +546,19 @@ function fetchCountryCoordinate(userCountrySearch) {
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 400'){
+          modalText.textContent='Please enter in a country.';
+        } else if(error=='Error: 404'){
+          modalText.textContent=error+'(Country not found)';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -510,7 +569,7 @@ function fetchStateCoordinate(userStateSearch) {
   '&key=1f298402f9764572995564fe8aad4f5f')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -519,7 +578,155 @@ function fetchStateCoordinate(userStateSearch) {
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Please enter in a state)';
+        } else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a state.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+      }
+      callModal();
     });
 }
+
+//mapstart
+// mapbox access token
+let mapboxAccessToken =
+'pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q';
+let mymap = L.map('mapid').setView([25, -96], 3);
+L.tileLayer(
+'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' +
+  mapboxAccessToken,
+{
+  id: 'mapbox/light-v9',
+  attribution:
+    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  tileSize: 512,
+  zoomOffset: -1,
+}
+).addTo(mymap);
+L.geoJson(statesData).addTo(mymap);
+// console.log(statesData); 
+
+// 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' +
+//   mapboxAccessToken
+
+// color map based off of population density
+
+function getColor(d) {
+  return d > 1000 ? '#800026' :
+         d > 500  ? '#BD0026' :
+         d > 200  ? '#E31A1C' :
+         d > 100  ? '#FC4E2A' :
+         d > 50   ? '#FD8D3C' :
+         d > 20   ? '#FEB24C' :
+         d > 10   ? '#FED976' :
+                    '#FFEDA0';
+}
+
+// display colors on map
+function style(feature) {
+  return {
+      fillColor: getColor(feature.properties.density),
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.3
+  };
+}
+// apply colors based off of pop density to map
+L.geoJson(statesData, {style: style}).addTo(mymap);
+
+// define geojson variable 
+let geojson;
+
+
+// add hover interaction
+function highlightFeature(e) {
+  let layer = e.target;
+
+  layer.setStyle({
+      weight: 5,
+      color: '#666',
+      dashArray: '',
+      fillOpacity: 0.7
+  });
+
+  info.update(layer.feature.properties);
+
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      layer.bringToFront();
+  }
+}
+
+// mouseout of hover 
+function resetHighlight(e) {
+  geojson.resetStyle(e.target);
+  info.update();
+}
+
+// click to zoom
+function zoomToFeature(e) {
+  mymap.fitBounds(e.target.getBounds());
+}
+
+// display state info on hover
+var info = L.control();
+
+info.onAdd = function (mymap) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
+        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+        : 'Hover over a state');
+};
+
+info.addTo(mymap);
+
+
+
+// apply listeners to state layers
+function onEachFeature(feature, layer) {
+  layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: zoomToFeature
+  });
+}
+geojson = L.geoJson(statesData, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(mymap);
+
+// create map legend
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    let div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (let i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<div class="legendItem"><i style="background:' + getColor(grades[i] + 1) + '"></i><p>' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '</p></div>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(mymap);   
+// map end 
 
