@@ -16,6 +16,7 @@ header{
     height: 70px;
     align-items: center;
     padding-left: 10px;
+    width: 100%;
 }
 
 header h1{
@@ -169,18 +170,104 @@ main #nav{
     display: flex;
 }
 
+#get-tested2{
+    display:none;
+}
+
+@media screen and (max-width: 455px){
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
+    }
+    
+    }
+
 @media screen and (max-width: 434px){
 .covid-19{
     font-size: 50px;
 }
+#get-tested2{
+    display:inline-block;
+}
+#get-tested1{
+    display:none;
+}
+main #nav{
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin: 5px 0 10px 0;
+    padding: 0 10px 0 10px;
+    text-transform: uppercase;
+    max-width: 100%;
+    overflow: hidden;
+}
+#starter-info{
+    padding: 0;
+}
+
 }
 @media screen and (max-width: 373px){
     .covid-19{
         font-size: 40px;
     }
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
+    }
+    
 }
 @media screen and (max-width: 303px){
     .covid-19{
         font-size: 35px;
+    }
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
     }
 }
