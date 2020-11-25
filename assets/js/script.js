@@ -728,5 +728,5 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(mymap);   
-// map end
+// map end 
 
