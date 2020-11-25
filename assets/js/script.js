@@ -27,6 +27,7 @@ let popUpCount = 0
 let countryInfoEl = document.querySelector("#countryInfo");
 
 
+
 // select state info container and set it blank
 let stateInfoEl = document.querySelector("#stateInfo");
 
@@ -43,7 +44,7 @@ function fetchCovidStarter() {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -53,7 +54,17 @@ function fetchCovidStarter() {
       displayCovidStarter(data);
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (content not found)';
+        }else{
+          modalText.textContent=error;
+        }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -134,7 +145,7 @@ function fetchCovidSearchCountry(userCountrySearch) {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -156,7 +167,19 @@ function fetchCovidSearchCountry(userCountrySearch) {
       stateSearchBarDivEl.innerHTML = " ", i = 0}
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Country not found)';
+        }else if(error=='Error: 400'){
+        modalText.textContent='Please enter in a country.';
+        }else{
+          modalText.textContent=error;
+          }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -311,7 +334,7 @@ function fetchCovidStateSearch(userStateSearch) {
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json();
     })
@@ -321,7 +344,19 @@ function fetchCovidStateSearch(userStateSearch) {
       displayStateSearch(data);
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (State not found)';
+        }else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a state.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -425,7 +460,7 @@ function fetchUsaPopup(){
   fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -437,7 +472,19 @@ function fetchUsaPopup(){
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Country not found) 4';
+        }else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a country.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -490,7 +537,7 @@ function fetchCountryCoordinate(userCountrySearch) {
   '&key=1f298402f9764572995564fe8aad4f5f')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // uthrow will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // uthrow will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -499,7 +546,19 @@ function fetchCountryCoordinate(userCountrySearch) {
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 400'){
+          modalText.textContent='Please enter in a country.';
+        } else if(error=='Error: 404'){
+          modalText.textContent=error+'(Country not found)';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+        console.log(error)
+      }
+      callModal();
     });
 }
 
@@ -510,7 +569,7 @@ function fetchStateCoordinate(userStateSearch) {
   '&key=1f298402f9764572995564fe8aad4f5f')
     .then(function (response) {
       if (!response.ok) { // Request failed, go to catch
-        throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
       return response.json()
     })
@@ -519,7 +578,21 @@ function fetchStateCoordinate(userStateSearch) {
       
     })
     .catch(function (error) {
-      alert(error);
+      var callModal = function() {
+        
+        if(error == 'Error: 404'){
+          modalText.textContent=error+' (Please enter in a state)';
+        } else if(error=='Error: 400'){
+          modalText.textContent='Please enter in a state.';
+          }else{
+            modalText.textContent=error;
+            }
+        modal.style.display = "block";
+      }
+      callModal();
     });
 }
+
+
+
 
