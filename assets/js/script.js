@@ -657,6 +657,6 @@ legend.onAdd = function (map) {
     return div;
 };
 
-legend.addTo(mymap);
+legend.addTo(mymap);   
 // map end
 
