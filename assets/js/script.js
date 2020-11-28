@@ -358,8 +358,8 @@ function getUserStateSearch() {
 }
 
 // fetch state covid data
-function fetchCovidStateSearch(userStateSearch) {
-  fetch("https://disease.sh/v3/covid-19/states/" + userStateSearch)
+function fetchCovidStateSearch(stateName) {
+  fetch("https://disease.sh/v3/covid-19/states/" + stateName)
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
@@ -725,7 +725,6 @@ L.geoJson(statesData, {style: style}).addTo(mymap);
 // add hover interaction
 function highlightFeature(e) {
   let layer = e.target;
-  
   layer.setStyle({
       weight: 5,
       color: '#666',
@@ -749,6 +748,9 @@ function resetHighlight(e) {
 // click to zoom
 function zoomToFeature(e) {
   mymap.fitBounds(e.target.getBounds());
+  let stateName = e.target.feature.properties.name
+  console.log(stateName)
+  fetchCovidStateSearch(stateName)
 }
 
 // display state info on hover
