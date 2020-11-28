@@ -68,7 +68,7 @@ function fetchUsaCovid() {
     });
 }
 
-fetchUsaCovid();
+
 
 
 
