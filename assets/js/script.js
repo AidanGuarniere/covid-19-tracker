@@ -122,6 +122,35 @@ function displayCovidStarter(data) {
     "Number of New Recoveries Today: " + data.todayRecovered;
 }
 
+
+// fetch 50 states info on load 
+fetch('https://disease.sh/v3/covid-19/states')
+.then(function (response) {
+  if (!response.ok) { // Request failed, go to catch
+    throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+  }
+  return response.json()
+})
+.then(function (statesCovidData) {
+  console.log(statesCovidData);
+  console.log(statesCovidData[1].active);
+})
+.catch(function (error) {
+  var callModal = function() {
+    
+    if(error == 'Error: 404'){
+      modalText.textContent=error+' (Country not found)';
+    }else if(error=='Error: 400'){
+    modalText.textContent='Please enter in a country.';
+    }else{
+      modalText.textContent=error;
+      }
+    modal.style.display = "block";
+    console.log(error)
+  }
+  callModal();
+});
+
 // submit country search button
 document
   .querySelector("#country-button")
@@ -593,6 +622,51 @@ function fetchStateCoordinate(userStateSearch) {
     });
 }
 
+
+
+// feature: {
+//   id: 12,
+//   properties: {
+//     name: 'Arizona',
+//     density: 25808
+//     activeCase: 5080383
+//   }  
+// }
+
+// fetch 50 states info on load 
+fetch('https://disease.sh/v3/covid-19/states')
+.then(function (response) {
+  if (!response.ok) { // Request failed, go to catch
+    throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+  }
+  return response.json()
+}) 
+.then(statesCovidData => {
+   for (let i = 0; i < statesCovidData.length; i++) {
+      for (let j = 0; j < statesData.features.length; j++) {
+         if (statesCovidData[i].state.toUpperCase() === statesData.features[j].properties.name.toUpperCase()) {
+           statesData.features[j].properties.activeCase = statesCovidData[i].active;
+         }
+      }
+   }
+   console.log(statesData);
+}) 
+
+.catch(function (error) {
+  var callModal = function() {
+    if(error == 'Error: 404'){
+      modalText.textContent=error+' (Country not found)';
+    }else if(error=='Error: 400'){
+    modalText.textContent='Please enter in a country.';
+    }else{
+      modalText.textContent=error;
+      }
+    modal.style.display = "block";
+    console.log(error)
+  }
+  callModal();
+});
+
 //mapstart
 // mapbox access token
 let mapboxAccessToken =
@@ -615,41 +689,43 @@ L.geoJson(statesData).addTo(mymap);
 // 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' +
 //   mapboxAccessToken
 
+// define geojson variable 
+let geojson;
+
 // color map based off of population density
 
 function getColor(d) {
-  return d > 1000 ? '#800026' :
-         d > 500  ? '#BD0026' :
-         d > 200  ? '#E31A1C' :
-         d > 100  ? '#FC4E2A' :
-         d > 50   ? '#FD8D3C' :
-         d > 20   ? '#FEB24C' :
-         d > 10   ? '#FED976' :
+  return d > 200000 ? '#800026' :
+         d > 150000  ? '#BD0026' :
+         d > 100000  ? '#E31A1C' :
+         d > 75000  ? '#FC4E2A' :
+         d > 50000   ? '#FD8D3C' :
+         d > 25000   ? '#FEB24C' :
+         d > 10000   ? '#FED976' :
                     '#FFEDA0';
 }
 
 // display colors on map
 function style(feature) {
   return {
-      fillColor: getColor(feature.properties.density),
+      fillColor: getColor(feature.properties.activeCase),
       weight: 2,
       opacity: 1,
       color: 'white',
       dashArray: '3',
-      fillOpacity: 0.3
+      fillOpacity: 0.4
   };
 }
 // apply colors based off of pop density to map
 L.geoJson(statesData, {style: style}).addTo(mymap);
 
-// define geojson variable 
-let geojson;
+
 
 
 // add hover interaction
 function highlightFeature(e) {
   let layer = e.target;
-
+  
   layer.setStyle({
       weight: 5,
       color: '#666',
@@ -686,8 +762,8 @@ info.onAdd = function (mymap) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+    this._div.innerHTML = '<h4>US Active Covid-19 Cases</h4>' +  (props ?
+        '<b>' + props.name + '</b><br />' + props.activeCase + ' active Covid-19 cases ' + '<br></br>'+ props.density + ' people / mi<sup>2</sup>'
         : 'Hover over a state');
 };
 
@@ -711,10 +787,10 @@ geojson = L.geoJson(statesData, {
 // create map legend
 var legend = L.control({position: 'bottomright'});
 
-legend.onAdd = function (map) {
+legend.onAdd = function (mymap) {
 
     let div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        grades = [0, 5000, 10000, 50000, 75000, 100000, 150000, 200000],
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
