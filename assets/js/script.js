@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // fetch covid-19 starter information
-function fetchCovidStarter() {
-  fetch("https://disease.sh/v3/covid-19/all")
+function fetchUsaCovid() {
+  fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
@@ -51,7 +51,7 @@ function fetchCovidStarter() {
     .then(function (data) {
       console.log(data);
 
-      displayCovidStarter(data);
+      displayUsaCovid(data);
     })
     .catch(function (error) {
       var callModal = function() {
@@ -68,59 +68,111 @@ function fetchCovidStarter() {
     });
 }
 
-fetchCovidStarter();
+fetchUsaCovid();
+
+
 
 // display covid starter info
-function displayCovidStarter(data) {
-  // display affected countries starter data
-  let countriesEl = document.querySelector("#affected-countries");
-  countriesEl.textContent =
-    "Number of Affected Countries: " + data.affectedCountries;
+function displayUsaCovid(data) {
+  // clear starter info display
+  let starterInfoEl = document.querySelector("#starter-info");
+  starterInfoEl.innerHTML = " ";
 
-  // display total active cases starter data
-  let ActiveEl = document.querySelector("#total-cases");
-  ActiveEl.textContent = "Total Active Cases: " + data.active;
+  // select country info container and set it blank
+  let countryInfoEl = document.querySelector("#countryInfo");
+  countryInfoEl.innerHTML = " ";
+  countryInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
+  
+  
 
-  // display total active cases per one million people starter data
-  let ActivePerOneMilEl = document.querySelector("#total-per-one-mil");
-  ActivePerOneMilEl.textContent =
-    "Total Active Cases per One Million People: " + data.activePerOneMillion;
+  // select state info container and set it blank
+  let stateInfoEl = document.querySelector("#stateInfo");
+  stateInfoEl.innerHTML = " ";
 
-  // display total deaths starter data
-  let DeathsEl = document.querySelector("#total-deaths");
-  DeathsEl.textContent = "Total Deaths " + data.deaths;
+  // select usa pop up container and set it blank
+  usaPopupContainerEl.innerHTML= " ";
 
-  // display total deaths per one million people starter data
-  let DeathsPerOneMilEl = document.querySelector("#total-deaths-per-one-mil");
-  DeathsPerOneMilEl.textContent =
-    "Total Deaths from Covid-19 per One Million People: " +
+  // display country name
+  let countryEl = document.createElement("h5");
+  countryEl.textContent = data.country;
+
+  //display country population
+  let countryPopulationEl = document.createElement("p");
+  countryPopulationEl.textContent =
+    "Total population of " + data.country + ": " + data.population;
+
+  //display number of people tested for covid
+  let countryTestsEl = document.createElement("p");
+  countryTestsEl.textContent =
+    "Number of People Tested for Covid-19: " + data.tests;
+
+  //display number of people tested per one million people
+  let countryTestsPerOneMilEl = document.createElement("p");
+  countryTestsPerOneMilEl.textContent =
+    "Number of People Tested for Covid-19 per One Million People: " +
+    data.testsPerOneMillion;
+
+  // display number of active cases
+  let countryActiveCasesEl = document.createElement("p");
+  countryActiveCasesEl.textContent =
+    "Current Number of Active Cases of Covid-19: " + data.active;
+
+  //display number of per one million people
+  let countryActiveCasesPerMilEl = document.createElement("p");
+  countryActiveCasesPerMilEl.textContent =
+    "Number of Active Cases of Covid-19 per One Million People: " +
+    data.activePerOneMillion;
+
+  //display number of critical covid cases
+  let countryCriticalCasesEl = document.createElement("p");
+  countryCriticalCasesEl.textContent =
+    "Current Number of Critical Cases of Covid-19: " + data.critical;
+
+  //display number of critical covid cases per one million people
+  let countryCriticalCasesPerMilEl = document.createElement("p");
+  countryCriticalCasesPerMilEl.textContent =
+    "Number of Critical Cases of Covid-19 per One Million People: " +
+    data.criticalPerOneMillion;
+
+  //display number of recoveries
+  let countryRecoveredEl = document.createElement("p");
+  countryRecoveredEl.textContent =
+    "Current Number of Recoveries from Covid-19: " + data.recovered;
+
+  //display number of recoveries per one million people
+  let countryRecoveredPerMilEl = document.createElement("p");
+  countryRecoveredPerMilEl.textContent =
+    "Number of Recoveries from Covid-19 per One Million People: " +
+    data.recoveredPerOneMillion;
+
+  //display number of deaths from covid
+  let countryDeathsEl = document.createElement("p");
+  countryDeathsEl.textContent =
+    "Current Number of Deaths caused by Covid-19 : " + data.deaths;
+
+  //display number of deaths per one million people
+  let countryDeathsPerMilEl = document.createElement("p");
+  countryDeathsPerMilEl.textContent =
+    "Number of Deaths caused by Covid-19 per One Million People: " +
     data.deathsPerOneMillion;
 
-  // display total recovered starter data
-  let RecoveredEl = document.querySelector("#total-recovered");
-  RecoveredEl.textContent =
-    "Number of People Recovered from Covid 19: " + data.recovered;
-
-  // display total recovered per one million starter data
-  let RecoveredPerOneMillionEl = document.querySelector(
-    "#total-recovered-per-one-mil"
-  );
-  RecoveredPerOneMillionEl.textContent =
-    "Number of People Recovered from Covid 19:  " + data.recoveredPerOneMillion;
-
-  // display new cases today starter data
-  let CasesTodayEl = document.querySelector("#total-cases-today");
-  CasesTodayEl.textContent = "Number of New Cases Today: " + data.todayCases;
-
-  // display new deaths today starter data
-  let deathsTodayEL = document.querySelector("#total-deaths-today");
-  deathsTodayEL.textContent = "Number of New Deaths Today: " + data.todayDeaths;
-
-  // display new recoveries today starter data
-  let recoveriesTodayEL = document.querySelector("#total-recovered-today");
-  recoveriesTodayEL.textContent =
-    "Number of New Recoveries Today: " + data.todayRecovered;
+  // append country search results to DOM
+  
+  countryInfoEl.append(countryEl);
+  countryInfoEl.append(countryPopulationEl);
+  countryInfoEl.append(countryTestsEl);
+  countryInfoEl.append(countryTestsPerOneMilEl);
+  countryInfoEl.append(countryActiveCasesEl);
+  countryInfoEl.append(countryActiveCasesPerMilEl);
+  countryInfoEl.append(countryCriticalCasesEl);
+  countryInfoEl.append(countryCriticalCasesPerMilEl);
+  countryInfoEl.append(countryRecoveredEl);
+  countryInfoEl.append(countryRecoveredPerMilEl);
+  countryInfoEl.append(countryDeathsEl);
+  countryInfoEl.append(countryDeathsPerMilEl);
+  stateInfoEl.removeAttribute('class', 'paragraph-container col l4 s12');
 }
+
 
 
 // fetch 50 states info on load 
