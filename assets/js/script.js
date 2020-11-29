@@ -504,7 +504,7 @@ fetch("https://disease.sh/v3/covid-19/states")
 // mapbox access token
 let mapboxAccessToken =
   "pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q";
-let mymap = L.map("mapid").setView([25, -96], 3);
+let mymap = L.map("mapid").setView([45, -100],3);
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=" +
     mapboxAccessToken,
