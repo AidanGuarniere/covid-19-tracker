@@ -624,7 +624,9 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
-    click: zoomToFeature,
+    touchstart: zoomToFeature,
+    click: zoomToFeature
+    
   });
 }
 geojson = L.geoJson(statesData, {
