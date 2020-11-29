@@ -567,7 +567,7 @@ function highlightFeature(e) {
   layer.setStyle({
     weight: 5,
     color: "#666",
-    dashArray: "",
+    dashArray: "", 
     fillOpacity: 0.7,
   });
 
