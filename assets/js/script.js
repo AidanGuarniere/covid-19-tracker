@@ -467,14 +467,18 @@ fetch("https://disease.sh/v3/covid-19/states")
     return response.json();
   })
   .then((statesCovidData) => {
+    // loop through statesCovidData and statesData 
     for (let i = 0; i < statesCovidData.length; i++) {
       for (let j = 0; j < statesData.features.length; j++) {
+        // if the state endpoint of the covid api and the name endpoint of the map api match, add the value of the active case endpoint from the covid api to the matching state's property in statesData, after density
         if (
           statesCovidData[i].state.toUpperCase() ===
           statesData.features[j].properties.name.toUpperCase()
         ) {
-          statesData.features[j].properties.activeCase =
-            statesCovidData[i].active;
+          statesData.features[j].properties.activeCase = statesCovidData[i].active;
+            // apply colors based off of active cases
+            geojson.resetStyle()
+            
         }
       }
     }
@@ -484,9 +488,9 @@ fetch("https://disease.sh/v3/covid-19/states")
   .catch(function (error) {
     var callModal = function () {
       if (error == "Error: 404") {
-        modalText.textContent = error + " (Country not found)";
+        modalText.textContent = error + " (Unable to Fetch Covid-19 Data) ";
       } else if (error == "Error: 400") {
-        modalText.textContent = "Please enter in a country.";
+        modalText.textContent = "Please reload the page";
       } else {
         modalText.textContent = error;
       }
@@ -555,8 +559,10 @@ function style(feature) {
 // apply colors based off of pop density to map
 L.geoJson(statesData, { style: style }).addTo(mymap);
 
+
 // add hover interaction
 function highlightFeature(e) {
+  
   let layer = e.target;
   layer.setStyle({
     weight: 5,
