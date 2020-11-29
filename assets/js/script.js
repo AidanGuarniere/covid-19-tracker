@@ -624,7 +624,8 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
-    touchstart: zoomToFeature,highlightFeature,
+    touchstart: zoomToFeature,
+    touchstart:highlightFeature,
     click: zoomToFeature
     
   });
