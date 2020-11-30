@@ -22,3 +22,33 @@ header h1{
 .back-to-home-page {
     margin: 10px 0 0 10px;
 }
+
+
+#infoText{
+    display: flex;
+    gap: 8px;
+    padding: 0 0 0 20px;
+    flex-direction: column;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    /* height: 500px;
+    width: 600px; */
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+    background-color: rgb(252, 250, 248);
+}
+
+#symsWeKnow{
+    display: flex;
+    margin-top: 10px;
+    gap: 8px;
+    padding: 0 0 0 20px;
+    flex-direction: column;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    /* height: 500px;
+    width: 600px; */
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+    background-color: rgb(252, 250, 248);
+}
