@@ -16,8 +16,7 @@
         <h1>Covid-19 Tracker</h1>
       </header>
       <a href='./index.html'class="waves-effect waves-light btn back-to-home-page">Back To Home Page</a>
-    <div>
-    <div class="container">
+       <div class="container">
         <div>
             <h2>Should You Get Tested?</h2>
         </div>
@@ -26,8 +25,10 @@
                 Fill out the checkboxes to determine weather or not you should get tested.
             </p>
         </div>
+
+ <!-- SURVEY FORM-->
       <div class="form_container" id="symptomsList">
-        <form onsubmit="returnResults();" action="./testing.html">
+        <form action="./testing.html">
           <p>
             <label>
               <input type="checkbox" class ="symptoms" id="fever" />
@@ -94,11 +95,11 @@
               <span>Diarrhea</span>
             </label>
           </p>
+        <!--The SUBMIT button-->
           <button id="action" class="btn waves-effect waves-light" type="submit">Submit
             <i class="material-icons right">send</i>
-          </button>
-<!-- The Modal -->
-<div id="myModal1" class="modal">
+          <!-- The Modal -->
+  <div id="myModal1" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
@@ -107,8 +108,8 @@
     <p2>SEEK EMERGENCY HELP</p2>
    </div>
 
-</div>
-<div id="myModal2" class="modal">
+  </div>
+  <div id="myModal2" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
@@ -117,8 +118,8 @@
     <P2>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</P2>
    </div>
 
-</div>
-<div id="myModal3" class="modal">
+  </div>
+  <div id="myModal3" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
@@ -127,11 +128,12 @@
     <p2>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</p2>
    </div>
 
-</div>
-
+  </div>
+          </button>
         </form>
+        <!--end form and button-->
       </div>
-    </div>
+      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/testing.js"></script>
   </body>
