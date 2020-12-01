@@ -15,11 +15,13 @@ header{
     background-image: linear-gradient(to right, rgb(0, 78, 59) , rgb(0, 48, 60));
     height: 70px;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 header h1{
     color: rgb(252, 250, 248);
+    padding-bottom:20px;
 }
 /* header end */
 
@@ -58,10 +60,8 @@ main #nav{
 /* navigation drop down end */
 
 /* Starter info start */
-.map{
-    height: 500px; 
-    background-color: red;
-}
+
+
 
 
 
@@ -69,20 +69,211 @@ main #nav{
     display: block;
     justify-content: center;
     width: fit-content;
-    margin: 0 0 20px 20px;
-    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 20px 0;
+    text-decoration: underline;
 
 }
 
 .paragraph-container{
     display: flex;
     gap: 10px;
-    justify-content: space-around;
     padding: 0 0 0 20px;
     flex-direction: column;
-}
-
-.paragraph-container p{
-    background-color: rgba(255, 255, 255, 0.5);
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 500px;
+    width: 300px;
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+    background-color: rgb(252, 250, 248);
 }
 /* Start ingo end */
+
+
+#countryInfo, #stateInfo{
+    position: relative;
+    max-width: 300px;
+    left: 23px;
+    /* margin-left: 695px; */
+}
+/* The Modal (background) */
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: fit-content; /* Full height */
+     /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    height: 25%;
+    margin: auto;
+    margin-bottom: 10000px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    font-size: 25px;
+  }
+
+  /* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    
+  }
+#mapid {
+    height: 500px;
+    width: 501px;
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.legendItem{
+    display: flex;
+}
+
+#get-tested2{
+    display:none;
+}
+
+@media screen and (max-width: 455px){
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
+    }
+    
+    }
+
+@media screen and (max-width: 434px){
+.covid-19{
+    font-size: 50px;
+}
+#get-tested2{
+    display:inline-block;
+}
+#get-tested1{
+    display:none;
+}
+main #nav{
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin: 5px 0 10px 0;
+    padding: 0 10px 0 10px;
+    text-transform: uppercase;
+    max-width: 100%;
+    overflow: hidden;
+}
+#starter-info{
+    padding: 0;
+}
+
+}
+@media screen and (max-width: 373px){
+    .covid-19{
+        font-size: 40px;
+    }
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
+    }
+    
+}
+@media screen and (max-width: 303px){
+    .covid-19{
+        font-size: 35px;
+    }
+    #get-tested2{
+        display:inline-block;
+    }
+    #get-tested1{
+        display:none;
+    }
+    main #nav{
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin: 5px 0 10px 0;
+        padding: 0 10px 0 10px;
+        text-transform: uppercase;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    #starter-info{
+        padding: 0;
+    }
+}
