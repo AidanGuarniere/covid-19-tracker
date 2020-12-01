@@ -95,24 +95,25 @@
               <span>Diarrhea</span>
             </label>
           </p>
+        </div>  
         <!--The SUBMIT button-->
           <button id="action" class="btn waves-effect waves-light" type="submit">Submit
             <i class="material-icons right">send</i>
+          </button>
           <!-- The Modal -->
   <div id="myModal1" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    
+    <span id="exit1" onclick="document.getElementById('myModal1').style.display='none'" class="close">&times;</span>
     <p>TESTING HIGHLY RECOMMENDED
     <br>SEEK EMERGENCY HELP</p>
-    <span class="close">&times;</span>
    </div>
 
   </div>
   <div id="myModal2" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span id="exit2" onclick="document.getElementById('myModal2').style.display='none'" class="close">&times;</span>
     <p>TESTING RECOMMENDED
     <br>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</p>
    </div>
@@ -121,13 +122,15 @@
   <div id="myModal3" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <header>
+    <span id="exit3" onclick="document.getElementById('myModal3').style.display='none'" class="close">&times;</span>
+    </header>
     <p>NO TESTING AT THIS TIME
     <br>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</p>
    </div>
 
   </div>
-          </button>
+          
         </form>
         <!--end form and button-->
       </div>
