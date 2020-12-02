@@ -238,16 +238,21 @@ main #nav{
         height: fit-content;
     }
     #nav a{
-        font-size: 10px;
-        font-weight: bolder;
+        font-size: 15px;
     }
     #mapid {
         height: 300px;
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 400px){
     .covid-19{
         font-size: 35px;
+    }
+    #nav a{
+        font-size: 10px;
+        font-weight: bolder;
+        height: 30px;
+        line-height: 30px;
     }
 }
