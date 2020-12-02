@@ -73,7 +73,7 @@ function displayUsaCovid(data) {
   // select country info container and set it blank
   let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
-  countryInfoEl.setAttribute("class", "paragraph-container col l4 s12");
+  countryInfoEl.setAttribute("class", "paragraph-container");
 
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
@@ -160,7 +160,7 @@ function displayUsaCovid(data) {
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
   countryInfoEl.append(countryDeathsPerMilEl);
-  stateInfoEl.removeAttribute("class", "paragraph-container col l4 s12");
+  stateInfoEl.removeAttribute("class", "paragraph-container");
 }
 
 // fetch 50 states info on load
@@ -367,8 +367,9 @@ function displayUsaPopup(data) {
     usaActiveCasesEl.textContent =
       "Current Number of Active Cases of Covid-19: " + data.active;
 
-    stateInfoEl.setAttribute("class", "paragraph-container col l4 s12");
-    countryInfoEl.removeAttribute("class", "paragraph-container col l4 s12");
+    stateInfoEl.setAttribute("class", "paragraph-container");
+    countryInfoEl.removeAttribute("class", "paragraph-container");
+    countryInfoEl.setAttribute('style', 'display: none;')
 
     //display number of deaths from covid
     let usaDeathsEl = document.createElement("p");
@@ -380,6 +381,9 @@ function displayUsaPopup(data) {
     usaPopupContainerEl.append(usaTestsEl);
     usaPopupContainerEl.append(usaActiveCasesEl);
     usaPopupContainerEl.append(usaDeathsEl);
+    usaPopupContainerEl.setAttribute('style', 'display: flex;');
+    let infoContainerEl = document.querySelector('#infoContainer');
+    infoContainerEl.setAttribute('style', 'gap: 20px;')
   }
 }
 
