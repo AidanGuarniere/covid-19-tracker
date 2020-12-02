@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid-19 Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--custom stylesheet-->
-    <link rel="stylesheet2" href="./assets/css/style2.css">
+    <link rel="stylesheet" href="./assets/css/style2.css">
 </head>
+
 <body>
+
     <header>
         <h1>What is Covid-19?</h1>
     </header>
-    <p>
-        How it spreads:
-The main way the virus is spread between people is by those who are in close contact, within 6ft of space to one another. The spreading is caused by Cough aerosols.
-Cough aerosols (respiratory droplets) are small airborne particles that carry pathogens when an infected person coughs, sneezes, sings, talks, or breathes. It can also be spread through surface contact. Cough aerosols droplets can land on surfaces, and can be passed through the eyes, mouth, and nose if came into contact with said surface. 
-Another form of transmission is airborne. If a person inhales  who is infected with Covid19 releases cough aerosols, those particles or can linger in the air for minutes to hours after. (This depends on the air flow circulation of the area.) 
+    <a href='./index.html'class="waves-effect waves-light btn back-to-home-page">Back To Home Page</a>
+<div class="content" id="homepage">
+    <ul >
+        
+    
+<!--where the info is displayed-->
+<div class='container1'>
+<div class="text" id="infoText">
+        
+        <h4>HOW IT SPREADS</h4>
+        <p>The main way the virus is spread between people is by those who are in close contact, within 6ft of space to
+            one another. The spreading is caused by Cough aerosols.
+            Cough aerosols (respiratory droplets) are small airborne particles that carry pathogens when an infected
+            person coughs, sneezes, sings, talks, or breathes. It can also be spread through surface contact. Cough
+            aerosols droplets can land on surfaces, and can be passed through the eyes, mouth, and nose if came into
+            contact with said surface.
+            Another form of transmission is airborne. If a person inhales air released from someone who is infected with
+            Covid19, those airborne particles can linger in the for minutes to up to hours after. (This depends on the
+            air flow circulation of the area.)
+        </p>
+</div> 
+</div>
 
-    </p>
+
+
+<div class="container2">
+    <div class="text" id="symsWeKnow">
+        <h4>THE SYPMTOMS WE KNOW</h4>
+        <p2>
+            <h5>Symptoms of COVID-19 can appear anywhere between 2 to 14 days after exposure.</h5>
+            <ul id="symptomsList">
+                <li>Fever or chills </li>
+                <li>Cough</li>
+                <li>Shortness of /lieath or difficulty /lieathing </li>
+                <li>Fatigue</li>
+                <li>Muscle or body aches</li>
+                <li>Headache</li>
+                <li>New loss of taste or smell</li>
+                <li>Sore throat</li>
+                <li>Congestion or runny nose</li>
+                <li>Nausea or vomiting</li>
+                <li>Diarrhea </li>
+            </ul>
+        </p2>
+    </div>
+</div>
+    <script src="./assets/js/covidfacts.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,1 @@
+//this is the script for the covid facts html in the info button in drop down navbar
