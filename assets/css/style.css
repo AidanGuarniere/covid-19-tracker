@@ -99,7 +99,7 @@ main #nav{
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 400px;
+    height: 405px;
     width: 100%;
     border: 2px solid rgb(38, 167, 154);
     border-radius: 15px;
@@ -206,6 +206,8 @@ main #nav{
     }
     #get-tested2{
         display:inline-block;
+        width: 100%;
+        font-size: 2fr;
     }
     #get-tested1{
         display:none;
@@ -238,7 +240,9 @@ main #nav{
         height: fit-content;
     }
     #nav a{
-        font-size: 15px;
+        font-size: 2fr;
+        padding-right: 0;
+        padding-left: 0;
     }
     #mapid {
         height: 300px;
@@ -252,7 +256,5 @@ main #nav{
     #nav a{
         font-size: 10px;
         font-weight: bolder;
-        height: 30px;
-        line-height: 30px;
     }
 }
