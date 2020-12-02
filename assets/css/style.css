@@ -81,7 +81,7 @@ main #nav{
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 455px;
+    height: 500px;
     width: 300px;
     border: 2px solid rgb(38, 167, 154);
     border-radius: 15px;
@@ -136,8 +136,14 @@ main #nav{
     color: #000;
     text-decoration: none;
     cursor: pointer;
+    
   }
-#mapid {height: 500px}
+#mapid {
+    height: 500px;
+    width: 501px;
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+}
 
 .info {
     padding: 6px 8px;

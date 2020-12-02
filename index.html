@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 
   </head>
-  <body>
+  <body onload="fetchUsaCovid()">
     <header>
       <h1 class='covid-19'>Covid-19 Tracker</h1>
     </header>
@@ -56,7 +56,7 @@
     <li><a href="#!">test</a></li>
     <li><a href="#!">test</a></li>
     <li><a href="#!">test</a></li>
-  </ul>
+  </ul> 
   
   <!-- Dropdown Trigger   3 -->
   <a class='dropdown-trigger btn' id='get-tested1' href='#' data-target='dropdown-testing'>Get Tested</a>
@@ -74,44 +74,19 @@
       <section id="map-and-info">
 
         <div id = 'container'class='container'>
-          <div id = 'searchContainer'class='row'>
-            <div class='col 1'>
-              <a class="waves-effect waves-light btn" id="country-button">search</a>
-            </div>
-            <div class='col 3'>
-              <input type="text" placeholder="Search a Country" id="countryInput" />
-            </div>
-            <div class='col 1' id='stateSearchButtonDiv'></div>
-            <div class='col 3' id='stateSearchBarDiv'></div>
-          </div>
+
           <!--Under search bar-->
           <div class='row'>
+            <!--map container-->
             <div id = "mapid" class=' col l8 s12'></div>
-            <div id = "starter-info" class=" col l4 s12">
-              <div>
-              <h5 style='margin-left: 20px;'>Global Covid-19 Data</h5>
+              <div id = "starter-info" class= "col l4 s12">
+                <div class ='paragraph-container'></div>
               </div>
-              <div id = "starter-info" class=" col l4 s12">
-                <div class ='paragraph-container'>
-                  <p class="" id = "affected-countries"></p>
-                  <p class="" id = "total-cases"></p>
-                  <p class="" id = "total-per-one-mil"></p>
-                  <p class="" id = "total-deaths"></p>
-                  <p class="" id = "total-deaths-per-one-mil"></p>
-                  <p class="" id = "total-recovered"></p>
-                  <p class="" id = "total-recovered-per-one-mil"></p>
-                  <p class="" id = "total-cases-today"></p>
-                  <p class="" id = "total-deaths-today"></p>
-                  <p class="" id = "total-recovered-today"></p>
-                </div>
-              </div>
-            </div>
-            <div>
-          
+            
+        <div id = 'infoContainer'>
           <div id="countryInfo" class=""></div>
           <div id="stateInfo" class=""></div>
           <div id="usaPopupContainer" class=""></div>
-
         </div>
         
         </div>

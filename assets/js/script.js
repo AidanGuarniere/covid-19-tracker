@@ -18,19 +18,16 @@ let stateSearchButtonDivEl = document.querySelector("#stateSearchButtonDiv");
 let stateSearchBarDivEl = document.querySelector("#stateSearchBarDiv");
 
 // grab popup container
-let usaPopupContainerEl = document.querySelector("#usaPopupContainer")
+let usaPopupContainerEl = document.querySelector("#usaPopupContainer");
 
 // popup counter
-let popUpCount = 0 
+let popUpCount = 0;
 
 // select country info container and set it blank
 let countryInfoEl = document.querySelector("#countryInfo");
 
-
-
 // select state info container and set it blank
 let stateInfoEl = document.querySelector("#stateInfo");
-
 
 // js functions for homepage dropdown
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // fetch covid-19 starter information
-function fetchCovidStarter() {
-  fetch("https://disease.sh/v3/covid-19/all")
+function fetchUsaCovid() {
+  fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
@@ -51,139 +48,24 @@ function fetchCovidStarter() {
     .then(function (data) {
       console.log(data);
 
-      displayCovidStarter(data);
+      displayUsaCovid(data);
     })
     .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 404'){
-          modalText.textContent=error+' (content not found)';
-        }else{
-          modalText.textContent=error;
+      var callModal = function () {
+        if (error == "Error: 404") {
+          modalText.textContent = error + " (content not found)";
+        } else {
+          modalText.textContent = error;
         }
         modal.style.display = "block";
-        console.log(error)
-      }
+        console.log(error);
+      };
       callModal();
     });
 }
-
-fetchCovidStarter();
 
 // display covid starter info
-function displayCovidStarter(data) {
-  // display affected countries starter data
-  let countriesEl = document.querySelector("#affected-countries");
-  countriesEl.textContent =
-    "Number of Affected Countries: " + data.affectedCountries;
-
-  // display total active cases starter data
-  let ActiveEl = document.querySelector("#total-cases");
-  ActiveEl.textContent = "Total Active Cases: " + data.active;
-
-  // display total active cases per one million people starter data
-  let ActivePerOneMilEl = document.querySelector("#total-per-one-mil");
-  ActivePerOneMilEl.textContent =
-    "Total Active Cases per One Million People: " + data.activePerOneMillion;
-
-  // display total deaths starter data
-  let DeathsEl = document.querySelector("#total-deaths");
-  DeathsEl.textContent = "Total Deaths " + data.deaths;
-
-  // display total deaths per one million people starter data
-  let DeathsPerOneMilEl = document.querySelector("#total-deaths-per-one-mil");
-  DeathsPerOneMilEl.textContent =
-    "Total Deaths from Covid-19 per One Million People: " +
-    data.deathsPerOneMillion;
-
-  // display total recovered starter data
-  let RecoveredEl = document.querySelector("#total-recovered");
-  RecoveredEl.textContent =
-    "Number of People Recovered from Covid 19: " + data.recovered;
-
-  // display total recovered per one million starter data
-  let RecoveredPerOneMillionEl = document.querySelector(
-    "#total-recovered-per-one-mil"
-  );
-  RecoveredPerOneMillionEl.textContent =
-    "Number of People Recovered from Covid 19:  " + data.recoveredPerOneMillion;
-
-  // display new cases today starter data
-  let CasesTodayEl = document.querySelector("#total-cases-today");
-  CasesTodayEl.textContent = "Number of New Cases Today: " + data.todayCases;
-
-  // display new deaths today starter data
-  let deathsTodayEL = document.querySelector("#total-deaths-today");
-  deathsTodayEL.textContent = "Number of New Deaths Today: " + data.todayDeaths;
-
-  // display new recoveries today starter data
-  let recoveriesTodayEL = document.querySelector("#total-recovered-today");
-  recoveriesTodayEL.textContent =
-    "Number of New Recoveries Today: " + data.todayRecovered;
-}
-
-// submit country search button
-document
-  .querySelector("#country-button")
-  .addEventListener("click", countrySearch);
-
-// store user country search and send to fetchCovidSearchCountry
-function countrySearch() {
-  let userCountrySearch = document.querySelector("#countryInput").value;
-
-  fetchCovidSearchCountry(userCountrySearch);
-  fetchCountryCoordinate(userCountrySearch)
-}
-
-// fetch country wide covid data based off of userCountrySearch
-function fetchCovidSearchCountry(userCountrySearch) {
-  fetch(
-    "https://disease.sh/v3/covid-19/countries/" +
-      userCountrySearch +
-      "?strict=true"
-  )
-    .then(function (response) {
-      if (!response.ok) {
-        // Request failed, go to catch
-        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-
-      // display country search
-      displayCountryInfo(data);
-      popUpCount = 0
-
-      // if country search is USA, add state search option
-      if (data.country === "USA") {
-        createStateSearch();
-        // add 1 to stateSearch creation count 
-        i++;
-      }
-      // clear stateSearch and set count to 0
-       else {  stateSearchButtonDivEl.innerHTML = " ", 
-      stateSearchBarDivEl.innerHTML = " ", i = 0}
-    })
-    .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 404'){
-          modalText.textContent=error+' (Country not found)';
-        }else if(error=='Error: 400'){
-        modalText.textContent='Please enter in a country.';
-        }else{
-          modalText.textContent=error;
-          }
-        modal.style.display = "block";
-        console.log(error)
-      }
-      callModal();
-    });
-}
-
-function displayCountryInfo(data) {
+function displayUsaCovid(data) {
   // clear starter info display
   let starterInfoEl = document.querySelector("#starter-info");
   starterInfoEl.innerHTML = " ";
@@ -191,16 +73,14 @@ function displayCountryInfo(data) {
   // select country info container and set it blank
   let countryInfoEl = document.querySelector("#countryInfo");
   countryInfoEl.innerHTML = " ";
-  countryInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
-  
-  
+  countryInfoEl.setAttribute("class", "paragraph-container col l4 s12");
 
   // select state info container and set it blank
   let stateInfoEl = document.querySelector("#stateInfo");
   stateInfoEl.innerHTML = " ";
 
   // select usa pop up container and set it blank
-  usaPopupContainerEl.innerHTML= " ";
+  usaPopupContainerEl.innerHTML = " ";
 
   // display country name
   let countryEl = document.createElement("h5");
@@ -267,7 +147,7 @@ function displayCountryInfo(data) {
     data.deathsPerOneMillion;
 
   // append country search results to DOM
-  
+
   countryInfoEl.append(countryEl);
   countryInfoEl.append(countryPopulationEl);
   countryInfoEl.append(countryTestsEl);
@@ -280,57 +160,40 @@ function displayCountryInfo(data) {
   countryInfoEl.append(countryRecoveredPerMilEl);
   countryInfoEl.append(countryDeathsEl);
   countryInfoEl.append(countryDeathsPerMilEl);
-  stateInfoEl.removeAttribute('class', 'paragraph-container col l4 s12');
+  stateInfoEl.removeAttribute("class", "paragraph-container col l4 s12");
 }
 
-// create state search if country === USA once
-
-  function createStateSearch() {
-    // if there is not already a stateSearch
-    if (i < 1) { 
-    //create state search button div container
-    stateSearchButtonDivEl 
-    
-    //create state search input div container
-    stateSearchBarDivEl
-
-    // create state search input
-    let stateSearchBarEl = document.createElement("input");
-    stateSearchBarEl.setAttribute("id", "stateInput");
-    stateSearchBarEl.setAttribute("placeholder", "Search a US State");
-    // create state search button
-    let stateSearchButtonEl = document.createElement("a");
-    stateSearchButtonEl.setAttribute("id", "state-button");
-    stateSearchButtonEl.setAttribute("class", "waves-effect waves-light btn");
-    stateSearchButtonEl.textContent = "Search";
-    console.log(stateSearchButtonEl);
-    // append state search to search container
-    stateSearchButtonDivEl.append(stateSearchButtonEl);
-    stateSearchBarDivEl.append(stateSearchBarEl);
-
-    
-
-    // add event listener to record user state search input
-    document
-      .querySelector("#state-button")
-      .addEventListener("click", getUserStateSearch);
-  }
-}
-
-// submit state search button
-
-// get state search
-function getUserStateSearch() {
-  // get user state search input
-  let userStateSearch = document.querySelector("#stateInput").value;
-  // run fetch request with search
-  fetchCovidStateSearch(userStateSearch);
-  fetchStateCoordinate(userStateSearch)
-}
+// fetch 50 states info on load
+fetch("https://disease.sh/v3/covid-19/states")
+  .then(function (response) {
+    if (!response.ok) {
+      // Request failed, go to catch
+      throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+    }
+    return response.json();
+  })
+  .then(function (statesCovidData) {
+    console.log(statesCovidData);
+    console.log(statesCovidData[1].active);
+  })
+  .catch(function (error) {
+    var callModal = function () {
+      if (error == "Error: 404") {
+        modalText.textContent = error + " (Country not found)";
+      } else if (error == "Error: 400") {
+        modalText.textContent = "Please enter in a country.";
+      } else {
+        modalText.textContent = error;
+      }
+      modal.style.display = "block";
+      console.log(error);
+    };
+    callModal();
+  });
 
 // fetch state covid data
-function fetchCovidStateSearch(userStateSearch) {
-  fetch("https://disease.sh/v3/covid-19/states/" + userStateSearch)
+function fetchCovidStateSearch(stateName) {
+  fetch("https://disease.sh/v3/covid-19/states/" + stateName)
     .then(function (response) {
       if (!response.ok) {
         // Request failed, go to catch
@@ -344,18 +207,17 @@ function fetchCovidStateSearch(userStateSearch) {
       displayStateSearch(data);
     })
     .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 404'){
-          modalText.textContent=error+' (State not found)';
-        }else if(error=='Error: 400'){
-          modalText.textContent='Please enter in a state.';
-          }else{
-            modalText.textContent=error;
-            }
+      var callModal = function () {
+        if (error == "Error: 404") {
+          modalText.textContent = error + " (State not found)";
+        } else if (error == "Error: 400") {
+          modalText.textContent = "Please enter in a state.";
+        } else {
+          modalText.textContent = error;
+        }
         modal.style.display = "block";
-        console.log(error)
-      }
+        console.log(error);
+      };
       callModal();
     });
 }
@@ -449,222 +311,274 @@ function displayStateSearch(data) {
   stateInfoEl.append(stateRecoveredPerMilEl);
   stateInfoEl.append(stateDeathsEl);
   stateInfoEl.append(stateDeathsPerMilEl);
-  fetchUsaPopup()
-  
+  fetchUsaPopup();
 }
 
-
-
 // get usa covid info for popup
-function fetchUsaPopup(){
+function fetchUsaPopup() {
   fetch("https://disease.sh/v3/covid-19/countries/usa?strict=true")
     .then(function (response) {
-      if (!response.ok) { // Request failed, go to catch
+      if (!response.ok) {
+        // Request failed, go to catch
         throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
-      return response.json()
+      return response.json();
     })
     .then(function (data) {
       console.log(data);
-      popUpCount++
-      displayUsaPopup(data)
-      
-      
+      popUpCount++;
+      displayUsaPopup(data);
     })
     .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 404'){
-          modalText.textContent=error+' (Country not found) 4';
-        }else if(error=='Error: 400'){
-          modalText.textContent='Please enter in a country.';
-          }else{
-            modalText.textContent=error;
-            }
+      var callModal = function () {
+        if (error == "Error: 404") {
+          modalText.textContent = error + " (Country not found) 4";
+        } else if (error == "Error: 400") {
+          modalText.textContent = "Please enter in a country.";
+        } else {
+          modalText.textContent = error;
+        }
         modal.style.display = "block";
-        console.log(error)
-      }
+        console.log(error);
+      };
       callModal();
     });
 }
 
 // display usa covid info for poppup
-function displayUsaPopup(data){
-  if (popUpCount < 2){
+function displayUsaPopup(data) {
+  if (popUpCount < 2) {
+    // display country name
+    let usaEl = document.createElement("h5");
+    usaEl.textContent = data.country;
 
-  // display country name
-  let usaEl = document.createElement("h5");
-  usaEl.textContent = data.country;
+    //display usa population
+    let usaPopulationEl = document.createElement("p");
+    usaPopulationEl.textContent =
+      "Total population of " + data.country + ": " + data.population;
 
-  //display usa population
-  let usaPopulationEl = document.createElement("p");
-  usaPopulationEl.textContent =
-    "Total population of " + data.country + ": " + data.population;
+    //display number of people tested for covid
+    let usaTestsEl = document.createElement("p");
+    usaTestsEl.textContent =
+      "Number of People Tested for Covid-19: " + data.tests;
 
-  //display number of people tested for covid
-  let usaTestsEl = document.createElement("p");
-  usaTestsEl.textContent =
-    "Number of People Tested for Covid-19: " + data.tests;
+    // display number of active cases
+    let usaActiveCasesEl = document.createElement("p");
+    usaActiveCasesEl.textContent =
+      "Current Number of Active Cases of Covid-19: " + data.active;
 
-  // display number of active cases
-  let usaActiveCasesEl = document.createElement("p");
-  usaActiveCasesEl.textContent =
-  "Current Number of Active Cases of Covid-19: " + data.active;
+    stateInfoEl.setAttribute("class", "paragraph-container col l4 s12");
+    countryInfoEl.removeAttribute("class", "paragraph-container col l4 s12");
 
-  stateInfoEl.setAttribute('class', 'paragraph-container col l4 s12');
-  countryInfoEl.removeAttribute('class', 'paragraph-container col l4 s12')
+    //display number of deaths from covid
+    let usaDeathsEl = document.createElement("p");
+    usaDeathsEl.textContent =
+      "Current Number of Deaths caused by Covid-19 : " + data.deaths;
 
-  
-
-  //display number of deaths from covid
-  let usaDeathsEl = document.createElement("p");
-  usaDeathsEl.textContent =
-    "Current Number of Deaths caused by Covid-19 : " + data.deaths;
-      
-
-  usaPopupContainerEl.append(usaEl);
-  usaPopupContainerEl.append(usaPopulationEl);
-  usaPopupContainerEl.append(usaTestsEl);
-  usaPopupContainerEl.append(usaActiveCasesEl);
-  usaPopupContainerEl.append(usaDeathsEl);
+    usaPopupContainerEl.append(usaEl);
+    usaPopupContainerEl.append(usaPopulationEl);
+    usaPopupContainerEl.append(usaTestsEl);
+    usaPopupContainerEl.append(usaActiveCasesEl);
+    usaPopupContainerEl.append(usaDeathsEl);
   }
 }
 
 // fetch country coordinate
 function fetchCountryCoordinate(userCountrySearch) {
-  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
-  +userCountrySearch+
-  '&key=1f298402f9764572995564fe8aad4f5f')
+  fetch(
+    "https://api.opencagedata.com/geocode/v1/json?q=" +
+      userCountrySearch +
+      "&key=1f298402f9764572995564fe8aad4f5f"
+  )
     .then(function (response) {
-      if (!response.ok) { // Request failed, go to catch
+      if (!response.ok) {
+        // Request failed, go to catch
         throw Error(response.status); // uthrow will stop execution of the promise chain and jump to catch
       }
-      return response.json()
+      return response.json();
     })
     .then(function (countryCoordinates) {
       console.log(countryCoordinates);
-      
     })
     .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 400'){
-          modalText.textContent='Please enter in a country.';
-        } else if(error=='Error: 404'){
-          modalText.textContent=error+'(Country not found)';
-          }else{
-            modalText.textContent=error;
-            }
+      var callModal = function () {
+        if (error == "Error: 400") {
+          modalText.textContent = "Please enter in a country.";
+        } else if (error == "Error: 404") {
+          modalText.textContent = error + "(Country not found)";
+        } else {
+          modalText.textContent = error;
+        }
         modal.style.display = "block";
-        console.log(error)
-      }
+        console.log(error);
+      };
       callModal();
     });
 }
 
 // fetch location coordinate
 function fetchStateCoordinate(userStateSearch) {
-  fetch('https://api.opencagedata.com/geocode/v1/json?q=' 
-  +userStateSearch+
-  '&key=1f298402f9764572995564fe8aad4f5f')
+  fetch(
+    "https://api.opencagedata.com/geocode/v1/json?q=" +
+      userStateSearch +
+      "&key=1f298402f9764572995564fe8aad4f5f"
+  )
     .then(function (response) {
-      if (!response.ok) { // Request failed, go to catch
+      if (!response.ok) {
+        // Request failed, go to catch
         throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
       }
-      return response.json()
+      return response.json();
     })
     .then(function (stateCoordinates) {
       console.log(stateCoordinates);
-      
     })
     .catch(function (error) {
-      var callModal = function() {
-        
-        if(error == 'Error: 404'){
-          modalText.textContent=error+' (Please enter in a state)';
-        } else if(error=='Error: 400'){
-          modalText.textContent='Please enter in a state.';
-          }else{
-            modalText.textContent=error;
-            }
+      var callModal = function () {
+        if (error == "Error: 404") {
+          modalText.textContent = error + " (Please enter in a state)";
+        } else if (error == "Error: 400") {
+          modalText.textContent = "Please enter in a state.";
+        } else {
+          modalText.textContent = error;
+        }
         modal.style.display = "block";
-      }
+      };
       callModal();
     });
 }
 
+// feature: {
+//   id: 12,
+//   properties: {
+//     name: 'Arizona',
+//     density: 25808
+//     activeCase: 5080383
+//   }
+// }
+
+// fetch 50 states info on load
+fetch("https://disease.sh/v3/covid-19/states")
+  .then(function (response) {
+    if (!response.ok) {
+      // Request failed, go to catch
+      throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
+    }
+    return response.json();
+  })
+  .then((statesCovidData) => {
+    // loop through statesCovidData and statesData 
+    for (let i = 0; i < statesCovidData.length; i++) {
+      for (let j = 0; j < statesData.features.length; j++) {
+        // if the state endpoint of the covid api and the name endpoint of the map api match, add the value of the active case endpoint from the covid api to the matching state's property in statesData, after density
+        if (
+          statesCovidData[i].state.toUpperCase() ===
+          statesData.features[j].properties.name.toUpperCase()
+        ) {
+          statesData.features[j].properties.activeCase = statesCovidData[i].active;
+            // apply colors based off of active cases
+            geojson.resetStyle()
+            
+        }
+      }
+    }
+    console.log(statesData);
+  })
+
+  .catch(function (error) {
+    var callModal = function () {
+      if (error == "Error: 404") {
+        modalText.textContent = error + " (Unable to Fetch Covid-19 Data) ";
+      } else if (error == "Error: 400") {
+        modalText.textContent = "Please reload the page";
+      } else {
+        modalText.textContent = error;
+      }
+      modal.style.display = "block";
+      console.log(error);
+    };
+    callModal();
+  });
+
 //mapstart
 // mapbox access token
 let mapboxAccessToken =
-'pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q';
-let mymap = L.map('mapid').setView([25, -96], 3);
+  "pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q";
+let mymap = L.map("mapid").setView([45, -100],3);
 L.tileLayer(
-'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' +
-  mapboxAccessToken,
-{
-  id: 'mapbox/light-v9',
-  attribution:
-    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  tileSize: 512,
-  zoomOffset: -1,
-}
+  "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=" +
+    mapboxAccessToken,
+  {
+    id: "mapbox/light-v9",
+    attribution:
+      'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    tileSize: 512,
+    zoomOffset: -1,
+  }
 ).addTo(mymap);
 L.geoJson(statesData).addTo(mymap);
-// console.log(statesData); 
+// console.log(statesData);
 
 // 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' +
 //   mapboxAccessToken
 
+// define geojson variable
+let geojson;
+
 // color map based off of population density
 
 function getColor(d) {
-  return d > 1000 ? '#800026' :
-         d > 500  ? '#BD0026' :
-         d > 200  ? '#E31A1C' :
-         d > 100  ? '#FC4E2A' :
-         d > 50   ? '#FD8D3C' :
-         d > 20   ? '#FEB24C' :
-         d > 10   ? '#FED976' :
-                    '#FFEDA0';
+  return d > 200000
+    ? "#800026"
+    : d > 150000
+    ? "#BD0026"
+    : d > 100000
+    ? "#E31A1C"
+    : d > 75000
+    ? "#FC4E2A"
+    : d > 50000
+    ? "#FD8D3C"
+    : d > 25000
+    ? "#FEB24C"
+    : d > 10000
+    ? "#FED976"
+    : "#FFEDA0";
 }
 
 // display colors on map
 function style(feature) {
   return {
-      fillColor: getColor(feature.properties.density),
-      weight: 2,
-      opacity: 1,
-      color: 'white',
-      dashArray: '3',
-      fillOpacity: 0.3
+    fillColor: getColor(feature.properties.activeCase),
+    weight: 2,
+    opacity: 1,
+    color: "white",
+    dashArray: "3",
+    fillOpacity: 0.4,
   };
 }
 // apply colors based off of pop density to map
-L.geoJson(statesData, {style: style}).addTo(mymap);
-
-// define geojson variable 
-let geojson;
+L.geoJson(statesData, { style: style }).addTo(mymap);
 
 
 // add hover interaction
 function highlightFeature(e) {
+  
   let layer = e.target;
-
   layer.setStyle({
-      weight: 5,
-      color: '#666',
-      dashArray: '',
-      fillOpacity: 0.7
+    weight: 5,
+    color: "#666",
+    dashArray: "", 
+    fillOpacity: 0.7,
   });
 
   info.update(layer.feature.properties);
 
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-      layer.bringToFront();
+    layer.bringToFront();
   }
 }
 
-// mouseout of hover 
+// mouseout of hover
 function resetHighlight(e) {
   geojson.resetStyle(e.target);
   info.update();
@@ -673,60 +587,73 @@ function resetHighlight(e) {
 // click to zoom
 function zoomToFeature(e) {
   mymap.fitBounds(e.target.getBounds());
+  let stateName = e.target.feature.properties.name;
+  console.log(stateName);
+  fetchCovidStateSearch(stateName);
 }
 
 // display state info on hover
 var info = L.control();
 
 info.onAdd = function (mymap) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
+  this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
+  this.update();
+  return this._div;
 };
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
-        : 'Hover over a state');
+  this._div.innerHTML =
+    "<h4>US Active Covid-19 Cases</h4>" +
+    (props
+      ? "<b>" +
+        props.name +
+        "</b><br />" +
+        props.activeCase +
+        " active Covid-19 cases " +
+        "<br></br>" +
+        props.density +
+        " people / mi<sup>2</sup>"
+      : "Hover over a state");
 };
 
 info.addTo(mymap);
 
-
-
 // apply listeners to state layers
 function onEachFeature(feature, layer) {
   layer.on({
-      mouseover: highlightFeature,
-      mouseout: resetHighlight,
-      click: zoomToFeature
+    mouseover: highlightFeature,
+    mouseout: resetHighlight,
+    touchstart: zoomToFeature,
+    click: zoomToFeature
+    
   });
 }
 geojson = L.geoJson(statesData, {
   style: style,
-  onEachFeature: onEachFeature
+  onEachFeature: onEachFeature,
 }).addTo(mymap);
 
 // create map legend
-var legend = L.control({position: 'bottomright'});
+var legend = L.control({ position: "bottomright" });
 
-legend.onAdd = function (map) {
+legend.onAdd = function (mymap) {
+  let div = L.DomUtil.create("div", "info legend"),
+    grades = [0, 5000, 10000, 50000, 75000, 100000, 150000, 200000],
+    labels = [];
 
-    let div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
+  // loop through our density intervals and generate a label with a colored square for each interval
+  for (let i = 0; i < grades.length; i++) {
+    div.innerHTML +=
+      '<div class="legendItem"><i style="background:' +
+      getColor(grades[i] + 1) +
+      '"></i><p>' +
+      grades[i] +
+      (grades[i + 1] ? "&ndash;" + grades[i + 1] + "</p></div>" : "+");
+  }
 
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (let i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<div class="legendItem"><i style="background:' + getColor(grades[i] + 1) + '"></i><p>' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '</p></div>' : '+');
-    }
-
-    return div;
+  return div;
 };
 
-legend.addTo(mymap);   
-// map end 
-
+legend.addTo(mymap);
+// map end
