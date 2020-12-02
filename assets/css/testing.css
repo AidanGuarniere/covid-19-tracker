@@ -24,3 +24,57 @@ p{
 span{
     color:black;
 }
+
+
+
+.modal {
+    top: 40%;
+    display: none;
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    /* max-height: 70%; */
+    width: 55%;
+    margin: auto;
+    /* overflow-y: auto; */
+    border-radius: 2px;
+    will-change: top, opacity;
+}
+
+  .modal-content {
+    background-color: #fefefe;
+    height: 25%;
+    margin: auto;
+    /* margin-bottom: 10000px; */
+    padding: 20px;
+    border: 1px solid #888;
+    /* width: 80%; */
+    font-size: 25px;
+  }
+
+
+  #symptomsList {
+    padding: 10px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
