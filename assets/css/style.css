@@ -33,12 +33,12 @@ main #nav{
     justify-content: space-around;
     gap: 20px;
     margin: 10px 0 20px 0;
-    padding: 0 20px 0 20px;
+    padding: 0 40px 0 40px;
     text-transform: uppercase;
 }
 
 .dropdown-content p{
-    font-size: medium; 
+    font-size: 2fr; 
     background-color: rgb(38, 167, 154);
     color: rgb(252, 250, 248);
     height: 40px;
@@ -61,7 +61,11 @@ main #nav{
 
 /* Starter info start */
 
-
+#infoContainer{
+    display: flex;
+    margin-top: 20px;
+    padding: 0;
+}
 
 
 
@@ -71,18 +75,32 @@ main #nav{
     width: fit-content;
     margin: 0 0 20px 0;
     text-decoration: underline;
+    font-weight: 650;
 
+}
+#usaPopupContainer{
+    display: none;
+    gap: 10px;
+    padding: 10px 10px 10px 20px;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 400px;
+    width: 50%;
+    border: 2px solid rgb(38, 167, 154);
+    border-radius: 15px;
+    background-color: rgb(252, 250, 248);
 }
 
 .paragraph-container{
     display: flex;
     gap: 10px;
-    padding: 0 0 0 20px;
+    padding: 0 20px 0 20px;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 500px;
-    width: 300px;
+    height: 405px;
+    width: 100%;
     border: 2px solid rgb(38, 167, 154);
     border-radius: 15px;
     background-color: rgb(252, 250, 248);
@@ -90,7 +108,13 @@ main #nav{
 /* Start ingo end */
 
 
+<<<<<<< HEAD
 
+=======
+#countryInfo, #stateInfo{
+   
+}
+>>>>>>> f02cb5b8b5382c046f2451a08f94b00731b365f2
 /* The Modal (background) */
 .modal1 {
     display: none; /* Hidden by default */
@@ -133,9 +157,14 @@ main #nav{
     cursor: pointer;
     
   }
+
+#container{
+    padding: 20px 40px 0 40px;
+}
+
 #mapid {
-    height: 500px;
-    width: 501px;
+    height: 600px;
+    width: 100%;
     border: 2px solid rgb(38, 167, 154);
     border-radius: 15px;
 }
@@ -175,60 +204,14 @@ main #nav{
     display:none;
 }
 
-@media screen and (max-width: 455px){
-    #get-tested2{
-        display:inline-block;
-    }
-    #get-tested1{
-        display:none;
-    }
-    main #nav{
-        display: flex;
-        align-items: center;
-        gap: 0px;
-        margin: 5px 0 10px 0;
-        padding: 0 10px 0 10px;
-        text-transform: uppercase;
-        max-width: 100%;
-        overflow: hidden;
-    }
-    #starter-info{
-        padding: 0;
-    }
-    
-    }
-
-@media screen and (max-width: 434px){
-.covid-19{
-    font-size: 50px;
-}
-#get-tested2{
-    display:inline-block;
-}
-#get-tested1{
-    display:none;
-}
-main #nav{
-    display: flex;
-    align-items: center;
-    gap: 0px;
-    margin: 5px 0 10px 0;
-    padding: 0 10px 0 10px;
-    text-transform: uppercase;
-    max-width: 100%;
-    overflow: hidden;
-}
-#starter-info{
-    padding: 0;
-}
-
-}
-@media screen and (max-width: 373px){
+@media screen and (max-width: 640px){
     .covid-19{
-        font-size: 40px;
+        font-size: 45px;
     }
     #get-tested2{
         display:inline-block;
+        width: 100%;
+        font-size: 2fr;
     }
     #get-tested1{
         display:none;
@@ -236,7 +219,7 @@ main #nav{
     main #nav{
         display: flex;
         align-items: center;
-        gap: 0px;
+        gap: 10px;
         margin: 5px 0 10px 0;
         padding: 0 10px 0 10px;
         text-transform: uppercase;
@@ -246,29 +229,42 @@ main #nav{
     #starter-info{
         padding: 0;
     }
-    
+    #container{
+        margin: 20px 0 20px 10px;
+        padding-right: 10px;
+        padding-left: 0;
+        display: block;
+    }
+    #infoContainer{
+        display: block;
+    }
+    #usaPopupContainer{
+        width: 100%;
+        margin-top: 20px;
+        height: fit-content;
+    }
+    .dropdown-content p{
+        font-size: 2fr;
+    }
+    #nav a{
+        font-size: 2fr;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    #mapid {
+        height: 300px;
+    }
 }
-@media screen and (max-width: 303px){
+
+@media screen and (max-width: 400px){
     .covid-19{
         font-size: 35px;
     }
-    #get-tested2{
-        display:inline-block;
+    #nav a{
+        font-size: 10px;
+        font-weight: bolder;
     }
-    #get-tested1{
-        display:none;
-    }
-    main #nav{
-        display: flex;
-        align-items: center;
-        gap: 0px;
-        margin: 5px 0 10px 0;
-        padding: 0 10px 0 10px;
-        text-transform: uppercase;
-        max-width: 100%;
-        overflow: hidden;
-    }
-    #starter-info{
-        padding: 0;
+    .dropdown-content p{
+        font-size: 2fr;
     }
 }

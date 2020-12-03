@@ -104,6 +104,7 @@ span{
     cursor: pointer;
   }
 
+<<<<<<< HEAD
   #action {
     position: relative;
     cursor: pointer;
@@ -121,3 +122,10 @@ span{
     margin: 10px 0 0 10px;
 }
 
+=======
+  @media screen and (max-width: 640px){
+    header h1{
+        font-size: 40px;
+    }
+  }
+>>>>>>> f02cb5b8b5382c046f2451a08f94b00731b365f2
