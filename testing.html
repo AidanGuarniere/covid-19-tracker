@@ -22,7 +22,7 @@
         </div>
         <div>
             <p>
-                Fill out the checkboxes to determine weather or not you should get tested.
+                Fill out the checkboxes to determine whether or not you should get tested.
             </p>
         </div>
        </div>
@@ -96,41 +96,67 @@
             </label>
           </p>
         </div>  
+      </form>
+      <!--end of form-->
+      
         <!--The SUBMIT button-->
           <button id="action" class="btn waves-effect waves-light" type="submit">Submit
             <i class="material-icons right">send</i>
           </button>
+
+ 
           <!-- The Modal -->
   <div id="myModal1" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span id="exit1" onclick="document.getElementById('myModal1').style.display='none'" class="close">&times;</span>
+    <span id="exit1"  onClick="window.location.reload()" class="close">&times;</span>
     <p>TESTING HIGHLY RECOMMENDED
-    <br>SEEK EMERGENCY HELP</p>
+    <br>SEEK LOCAL EMERGENCY HELP</p>
+    <button>
+      <a href="https://www.hhs.gov/coronavirus/community-based-testing-sites/index.html">Get Tested Here</a>
+      </button>
    </div>
 
   </div>
   <div id="myModal2" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span id="exit2" onclick="document.getElementById('myModal2').style.display='none'" class="close">&times;</span>
+    <span id="exit2"  onClick="window.location.reload()" class="close">&times;</span>
     <p>TESTING RECOMMENDED
     <br>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</p>
-   </div>
+    <button>
+    <a href="https://www.hhs.gov/coronavirus/community-based-testing-sites/index.html">Get Tested Here</a>
+    </button>
+  </div>
 
   </div>
   <div id="myModal3" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-        <span id="exit3" onclick="document.getElementById('myModal3').style.display='none'" class="close">&times;</span>
+        <span id="exit3"  onClick="window.location.reload()" class="close">&times;</span>
        <p>NO TESTING AT THIS TIME
     <br>MONITER SYMPTOMS AND QUARANTINE 10-14 DAYS</p>
    </div>
 
   </div>
+
+  <div id="myModal4" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+          <span id="exit4"  onClick="window.location.reload()" class="close">&times;</span>
+         <p>NO TESTING AT THIS TIME
+           <br> PLEASE CONTINUE TO PRACTICE SOCIAL DISTANCING </p>
+     </div>
+
+    </div>
+
+    <div id="timeOutBG" class="modalBG">
+      <!-- Modal content -->
+      <div id="timeOutBG-Cont" class="modalBG-content">
+        Please wait...
+      </div>
           
-        </form>
-        <!--end form and button-->
+       
       </div>
       </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

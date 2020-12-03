@@ -90,12 +90,7 @@ main #nav{
 /* Start ingo end */
 
 
-#countryInfo, #stateInfo{
-    position: relative;
-    max-width: 300px;
-    left: 23px;
-    /* margin-left: 695px; */
-}
+
 /* The Modal (background) */
 .modal1 {
     display: none; /* Hidden by default */

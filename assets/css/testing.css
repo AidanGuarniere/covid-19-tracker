@@ -28,7 +28,7 @@ span{
 
 
 .modal {
-    top: 40%;
+    top: 30%;
     display: none;
     position: fixed !important;
     left: 0;
@@ -36,12 +36,35 @@ span{
     background-color: #fafafa;
     padding: 0;
     /* max-height: 70%; */
-    width: 55%;
+    width: fit-content;
     margin: auto;
     /* overflow-y: auto; */
     border-radius: 2px;
-    will-change: top, opacity;
+    will-change: top;
+    z-index: 10;
 }
+
+
+#timeOutBG {
+  top: 15%;
+  display: none;
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  background-color: lightgrey;
+  padding: 100px;
+  height: 100%;
+  border-radius: 2px;
+  will-change: top;
+  opacity: 40%;
+ 
+}
+
+#timeOutBG-Cont {
+
+  font-weight: bold;
+}
+
 
   .modal-content {
     background-color: #fefefe;
@@ -52,6 +75,7 @@ span{
     border: 1px solid #888;
     /* width: 80%; */
     font-size: 25px;
+    text-align: center;
   }
 
 
@@ -62,6 +86,7 @@ span{
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
+    margin-left: 5px;
 }
 
 
@@ -78,3 +103,21 @@ span{
     text-decoration: none;
     cursor: pointer;
   }
+
+  #action {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 0;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    margin: 10px 0 0 10px;
+}
+
