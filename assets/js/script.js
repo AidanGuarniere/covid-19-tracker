@@ -46,7 +46,7 @@ function fetchUsaCovid() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      
 
       displayUsaCovid(data);
     })
@@ -163,34 +163,6 @@ function displayUsaCovid(data) {
   stateInfoEl.removeAttribute("class", "paragraph-container");
 }
 
-// fetch 50 states info on load
-fetch("https://disease.sh/v3/covid-19/states")
-  .then(function (response) {
-    if (!response.ok) {
-      // Request failed, go to catch
-      throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
-    }
-    return response.json();
-  })
-  .then(function (statesCovidData) {
-    console.log(statesCovidData);
-    console.log(statesCovidData[1].active);
-  })
-  .catch(function (error) {
-    var callModal = function () {
-      if (error == "Error: 404") {
-        modalText.textContent = error + " (Country not found)";
-      } else if (error == "Error: 400") {
-        modalText.textContent = "Please enter in a country.";
-      } else {
-        modalText.textContent = error;
-      }
-      modal.style.display = "block";
-      console.log(error);
-    };
-    callModal();
-  });
-
 // fetch state covid data
 function fetchCovidStateSearch(stateName) {
   fetch("https://disease.sh/v3/covid-19/states/" + stateName)
@@ -202,7 +174,7 @@ function fetchCovidStateSearch(stateName) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+    
       // display state covid data
       displayStateSearch(data);
     })
@@ -325,7 +297,6 @@ function fetchUsaPopup() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       popUpCount++;
       displayUsaPopup(data);
     })
@@ -387,80 +358,6 @@ function displayUsaPopup(data) {
   }
 }
 
-// fetch country coordinate
-function fetchCountryCoordinate(userCountrySearch) {
-  fetch(
-    "https://api.opencagedata.com/geocode/v1/json?q=" +
-      userCountrySearch +
-      "&key=1f298402f9764572995564fe8aad4f5f"
-  )
-    .then(function (response) {
-      if (!response.ok) {
-        // Request failed, go to catch
-        throw Error(response.status); // uthrow will stop execution of the promise chain and jump to catch
-      }
-      return response.json();
-    })
-    .then(function (countryCoordinates) {
-      console.log(countryCoordinates);
-    })
-    .catch(function (error) {
-      var callModal = function () {
-        if (error == "Error: 400") {
-          modalText.textContent = "Please enter in a country.";
-        } else if (error == "Error: 404") {
-          modalText.textContent = error + "(Country not found)";
-        } else {
-          modalText.textContent = error;
-        }
-        modal.style.display = "block";
-        console.log(error);
-      };
-      callModal();
-    });
-}
-
-// fetch location coordinate
-function fetchStateCoordinate(userStateSearch) {
-  fetch(
-    "https://api.opencagedata.com/geocode/v1/json?q=" +
-      userStateSearch +
-      "&key=1f298402f9764572995564fe8aad4f5f"
-  )
-    .then(function (response) {
-      if (!response.ok) {
-        // Request failed, go to catch
-        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
-      }
-      return response.json();
-    })
-    .then(function (stateCoordinates) {
-      console.log(stateCoordinates);
-    })
-    .catch(function (error) {
-      var callModal = function () {
-        if (error == "Error: 404") {
-          modalText.textContent = error + " (Please enter in a state)";
-        } else if (error == "Error: 400") {
-          modalText.textContent = "Please enter in a state.";
-        } else {
-          modalText.textContent = error;
-        }
-        modal.style.display = "block";
-      };
-      callModal();
-    });
-}
-
-// feature: {
-//   id: 12,
-//   properties: {
-//     name: 'Arizona',
-//     density: 25808
-//     activeCase: 5080383
-//   }
-// }
-
 // fetch 50 states info on load
 fetch("https://disease.sh/v3/covid-19/states")
   .then(function (response) {
@@ -486,7 +383,7 @@ fetch("https://disease.sh/v3/covid-19/states")
         }
       }
     }
-    console.log(statesData);
+  
   })
 
   .catch(function (error) {
@@ -592,7 +489,6 @@ function resetHighlight(e) {
 function zoomToFeature(e) {
   mymap.fitBounds(e.target.getBounds());
   let stateName = e.target.feature.properties.name;
-  console.log(stateName);
   fetchCovidStateSearch(stateName);
 }
 
