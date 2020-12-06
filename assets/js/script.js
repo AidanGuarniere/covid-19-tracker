@@ -46,8 +46,6 @@ function fetchUsaCovid() {
       return response.json();
     })
     .then(function (data) {
-      
-
       displayUsaCovid(data);
     })
     .catch(function (error) {
@@ -174,7 +172,6 @@ function fetchCovidStateSearch(stateName) {
       return response.json();
     })
     .then(function (data) {
-    
       // display state covid data
       displayStateSearch(data);
     })
@@ -340,7 +337,7 @@ function displayUsaPopup(data) {
 
     stateInfoEl.setAttribute("class", "paragraph-container");
     countryInfoEl.removeAttribute("class", "paragraph-container");
-    countryInfoEl.setAttribute('style', 'display: none;')
+    countryInfoEl.setAttribute("style", "display: none;");
 
     //display number of deaths from covid
     let usaDeathsEl = document.createElement("p");
@@ -352,9 +349,9 @@ function displayUsaPopup(data) {
     usaPopupContainerEl.append(usaTestsEl);
     usaPopupContainerEl.append(usaActiveCasesEl);
     usaPopupContainerEl.append(usaDeathsEl);
-    usaPopupContainerEl.setAttribute('style', 'display: flex;');
-    let infoContainerEl = document.querySelector('#infoContainer');
-    infoContainerEl.setAttribute('style', 'gap: 20px;')
+    usaPopupContainerEl.setAttribute("style", "display: flex;");
+    let infoContainerEl = document.querySelector("#infoContainer");
+    infoContainerEl.setAttribute("style", "gap: 20px;");
   }
 }
 
@@ -368,7 +365,7 @@ fetch("https://disease.sh/v3/covid-19/states")
     return response.json();
   })
   .then((statesCovidData) => {
-    // loop through statesCovidData and statesData 
+    // loop through statesCovidData and statesData
     for (let i = 0; i < statesCovidData.length; i++) {
       for (let j = 0; j < statesData.features.length; j++) {
         // if the state endpoint of the covid api and the name endpoint of the map api match, add the value of the active case endpoint from the covid api to the matching state's property in statesData, after density
@@ -376,14 +373,13 @@ fetch("https://disease.sh/v3/covid-19/states")
           statesCovidData[i].state.toUpperCase() ===
           statesData.features[j].properties.name.toUpperCase()
         ) {
-          statesData.features[j].properties.activeCase = statesCovidData[i].active;
-            // apply colors based off of active cases
-            geojson.resetStyle()
-            
+          statesData.features[j].properties.activeCase =
+            statesCovidData[i].active;
+          // apply colors based off of active cases
+          geojson.resetStyle();
         }
       }
     }
-  
   })
 
   .catch(function (error) {
@@ -405,7 +401,7 @@ fetch("https://disease.sh/v3/covid-19/states")
 // mapbox access token
 let mapboxAccessToken =
   "pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q";
-let mymap = L.map("mapid").setView([45, -100],3);
+let mymap = L.map("mapid").setView([45, -100], 3);
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=" +
     mapboxAccessToken,
@@ -460,15 +456,13 @@ function style(feature) {
 // apply colors based off of pop density to map
 L.geoJson(statesData, { style: style }).addTo(mymap);
 
-
 // add hover interaction
 function highlightFeature(e) {
-  
   let layer = e.target;
   layer.setStyle({
     weight: 5,
     color: "#666",
-    dashArray: "", 
+    dashArray: "",
     fillOpacity: 0.7,
   });
 
@@ -525,8 +519,7 @@ function onEachFeature(feature, layer) {
     mouseover: highlightFeature,
     mouseout: resetHighlight,
     touchstart: zoomToFeature,
-    click: zoomToFeature
-    
+    click: zoomToFeature,
   });
 }
 geojson = L.geoJson(statesData, {
