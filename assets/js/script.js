@@ -46,8 +46,6 @@ function fetchUsaCovid() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-
       displayUsaCovid(data);
     })
     .catch(function (error) {
@@ -163,34 +161,6 @@ function displayUsaCovid(data) {
   stateInfoEl.removeAttribute("class", "paragraph-container");
 }
 
-// fetch 50 states info on load
-fetch("https://disease.sh/v3/covid-19/states")
-  .then(function (response) {
-    if (!response.ok) {
-      // Request failed, go to catch
-      throw Error(response.statusText); // throw will stop execution of the promise chain and jump to catch
-    }
-    return response.json();
-  })
-  .then(function (statesCovidData) {
-    console.log(statesCovidData);
-    console.log(statesCovidData[1].active);
-  })
-  .catch(function (error) {
-    var callModal = function () {
-      if (error == "Error: 404") {
-        modalText.textContent = error + " (Country not found)";
-      } else if (error == "Error: 400") {
-        modalText.textContent = "Please enter in a country.";
-      } else {
-        modalText.textContent = error;
-      }
-      modal.style.display = "block";
-      console.log(error);
-    };
-    callModal();
-  });
-
 // fetch state covid data
 function fetchCovidStateSearch(stateName) {
   fetch("https://disease.sh/v3/covid-19/states/" + stateName)
@@ -202,7 +172,6 @@ function fetchCovidStateSearch(stateName) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       // display state covid data
       displayStateSearch(data);
     })
@@ -325,7 +294,6 @@ function fetchUsaPopup() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       popUpCount++;
       displayUsaPopup(data);
     })
@@ -369,7 +337,7 @@ function displayUsaPopup(data) {
 
     stateInfoEl.setAttribute("class", "paragraph-container");
     countryInfoEl.removeAttribute("class", "paragraph-container");
-    countryInfoEl.setAttribute('style', 'display: none;')
+    countryInfoEl.setAttribute("style", "display: none;");
 
     //display number of deaths from covid
     let usaDeathsEl = document.createElement("p");
@@ -381,85 +349,11 @@ function displayUsaPopup(data) {
     usaPopupContainerEl.append(usaTestsEl);
     usaPopupContainerEl.append(usaActiveCasesEl);
     usaPopupContainerEl.append(usaDeathsEl);
-    usaPopupContainerEl.setAttribute('style', 'display: flex;');
-    let infoContainerEl = document.querySelector('#infoContainer');
-    infoContainerEl.setAttribute('style', 'gap: 20px;')
+    usaPopupContainerEl.setAttribute("style", "display: flex;");
+    let infoContainerEl = document.querySelector("#infoContainer");
+    infoContainerEl.setAttribute("style", "gap: 20px;");
   }
 }
-
-// fetch country coordinate
-function fetchCountryCoordinate(userCountrySearch) {
-  fetch(
-    "https://api.opencagedata.com/geocode/v1/json?q=" +
-      userCountrySearch +
-      "&key=1f298402f9764572995564fe8aad4f5f"
-  )
-    .then(function (response) {
-      if (!response.ok) {
-        // Request failed, go to catch
-        throw Error(response.status); // uthrow will stop execution of the promise chain and jump to catch
-      }
-      return response.json();
-    })
-    .then(function (countryCoordinates) {
-      console.log(countryCoordinates);
-    })
-    .catch(function (error) {
-      var callModal = function () {
-        if (error == "Error: 400") {
-          modalText.textContent = "Please enter in a country.";
-        } else if (error == "Error: 404") {
-          modalText.textContent = error + "(Country not found)";
-        } else {
-          modalText.textContent = error;
-        }
-        modal.style.display = "block";
-        console.log(error);
-      };
-      callModal();
-    });
-}
-
-// fetch location coordinate
-function fetchStateCoordinate(userStateSearch) {
-  fetch(
-    "https://api.opencagedata.com/geocode/v1/json?q=" +
-      userStateSearch +
-      "&key=1f298402f9764572995564fe8aad4f5f"
-  )
-    .then(function (response) {
-      if (!response.ok) {
-        // Request failed, go to catch
-        throw Error(response.status); // throw will stop execution of the promise chain and jump to catch
-      }
-      return response.json();
-    })
-    .then(function (stateCoordinates) {
-      console.log(stateCoordinates);
-    })
-    .catch(function (error) {
-      var callModal = function () {
-        if (error == "Error: 404") {
-          modalText.textContent = error + " (Please enter in a state)";
-        } else if (error == "Error: 400") {
-          modalText.textContent = "Please enter in a state.";
-        } else {
-          modalText.textContent = error;
-        }
-        modal.style.display = "block";
-      };
-      callModal();
-    });
-}
-
-// feature: {
-//   id: 12,
-//   properties: {
-//     name: 'Arizona',
-//     density: 25808
-//     activeCase: 5080383
-//   }
-// }
 
 // fetch 50 states info on load
 fetch("https://disease.sh/v3/covid-19/states")
@@ -471,7 +365,7 @@ fetch("https://disease.sh/v3/covid-19/states")
     return response.json();
   })
   .then((statesCovidData) => {
-    // loop through statesCovidData and statesData 
+    // loop through statesCovidData and statesData
     for (let i = 0; i < statesCovidData.length; i++) {
       for (let j = 0; j < statesData.features.length; j++) {
         // if the state endpoint of the covid api and the name endpoint of the map api match, add the value of the active case endpoint from the covid api to the matching state's property in statesData, after density
@@ -479,14 +373,13 @@ fetch("https://disease.sh/v3/covid-19/states")
           statesCovidData[i].state.toUpperCase() ===
           statesData.features[j].properties.name.toUpperCase()
         ) {
-          statesData.features[j].properties.activeCase = statesCovidData[i].active;
-            // apply colors based off of active cases
-            geojson.resetStyle()
-            
+          statesData.features[j].properties.activeCase =
+            statesCovidData[i].active;
+          // apply colors based off of active cases
+          geojson.resetStyle();
         }
       }
     }
-    console.log(statesData);
   })
 
   .catch(function (error) {
@@ -508,7 +401,7 @@ fetch("https://disease.sh/v3/covid-19/states")
 // mapbox access token
 let mapboxAccessToken =
   "pk.eyJ1IjoiYWlkYW5ndWFybmllcmUiLCJhIjoiY2todjRrdm9iMWgwZzJ0bnR6eWJ1djdzbSJ9._gO22A8Df-Mwc20rdnz74Q";
-let mymap = L.map("mapid").setView([45, -100],3);
+let mymap = L.map("mapid").setView([45, -100], 3);
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=" +
     mapboxAccessToken,
@@ -563,15 +456,13 @@ function style(feature) {
 // apply colors based off of pop density to map
 L.geoJson(statesData, { style: style }).addTo(mymap);
 
-
 // add hover interaction
 function highlightFeature(e) {
-  
   let layer = e.target;
   layer.setStyle({
     weight: 5,
     color: "#666",
-    dashArray: "", 
+    dashArray: "",
     fillOpacity: 0.7,
   });
 
@@ -592,7 +483,6 @@ function resetHighlight(e) {
 function zoomToFeature(e) {
   mymap.fitBounds(e.target.getBounds());
   let stateName = e.target.feature.properties.name;
-  console.log(stateName);
   fetchCovidStateSearch(stateName);
 }
 
@@ -629,8 +519,7 @@ function onEachFeature(feature, layer) {
     mouseover: highlightFeature,
     mouseout: resetHighlight,
     touchstart: zoomToFeature,
-    click: zoomToFeature
-    
+    click: zoomToFeature,
   });
 }
 geojson = L.geoJson(statesData, {
