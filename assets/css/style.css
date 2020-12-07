@@ -38,7 +38,7 @@ main #nav{
 }
 
 .dropdown-content p{
-    font-size: 2fr; 
+   
     background-color: rgb(38, 167, 154);
     color: rgb(252, 250, 248);
     height: 40px;
@@ -204,7 +204,7 @@ main #nav{
     #get-tested2{
         display:inline-block;
         width: 100%;
-        font-size: 2fr;
+        
     }
     #get-tested1{
         display:none;
@@ -236,11 +236,9 @@ main #nav{
         margin-top: 20px;
         height: fit-content;
     }
-    .dropdown-content p{
-        font-size: 2fr;
-    }
+   
     #nav a{
-        font-size: 2fr;
+       
         padding-right: 0;
         padding-left: 0;
     }
@@ -257,7 +255,5 @@ main #nav{
         font-size: 10px;
         font-weight: bolder;
     }
-    .dropdown-content p{
-        font-size: 2fr;
-    }
+    
 }

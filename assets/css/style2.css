@@ -11,16 +11,19 @@ header{
     align-items: center;
     padding-left: 10px;
     padding-bottom: 20px;
-
+    
 }
+
 
 header h1{
     color: rgb(252, 250, 248);
+    /*font-size: 40px;*/
 }
 /* header end */
 
 .back-to-home-page {
-    margin: 10px 0 0 10px;
+    margin: 10px 0 10px 10px;
+    
 }
 
 
@@ -52,3 +55,17 @@ header h1{
     /*border: 2px solid rgb(38, 167, 154);*/
     border-radius: 15px;
     background-color: rgb(247, 241, 232);}
+
+@media screen and (max-width:500px){
+   h1 { font-size: 35px;
+
+   }
+
+}
+
+@media screen and (max-width:340px){
+    h1 { font-size: 25px;
+ 
+    }
+ 
+ }
