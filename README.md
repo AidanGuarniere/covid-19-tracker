@@ -5,7 +5,7 @@ A user-friendly website that provides users with informational resources on Covi
 ## Deployed Website: 
 https://aidanguarniere.github.io/covid-19-tracker/
 
-## Technologies Used
+## Technologies Used:
 - JavaScript
 - HTML
 - CSS
