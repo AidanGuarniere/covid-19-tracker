@@ -27,15 +27,16 @@ header h1{
 #infoText{
     display: flex;
     gap: 8px;
-    padding: 0 0 0 20px;
+    padding: 0 0 20px 20px;
     flex-direction: column;
     /* overflow-x: hidden;
     overflow-y: auto; */
     /* height: 500px;
     width: 600px; */
-    border: 2px solid rgb(38, 167, 154);
+    /*border: 2px solid rgb(38, 167, 154);*/
     border-radius: 15px;
-    background-color: rgb(252, 250, 248);
+    background-color: rgb(247, 241, 232);
+    
 }
 
 #symsWeKnow{
@@ -48,7 +49,6 @@ header h1{
     overflow-y: auto; */
     /* height: 500px;
     width: 600px; */
-    border: 2px solid rgb(38, 167, 154);
+    /*border: 2px solid rgb(38, 167, 154);*/
     border-radius: 15px;
-    background-color: rgb(252, 250, 248);
-}
+    background-color: rgb(247, 241, 232);}
